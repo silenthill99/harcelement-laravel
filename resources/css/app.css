@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@layer base {
+    h1 {
+        font-size: 1.875rem;
+        line-height: calc(2.25 / 1.875);
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+    }
+
+    h1, h2, h3 {
+        font-weight: bold;
+    }
+
+    @media (width >= 48rem){
+        h2 {
+            font-size: 1.5rem;
+            line-height: calc(2 / 1.5);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            line-height: calc(1.75 / 1.25);
+        }
+    }
+}
+
+@theme {
+    --color-fond: #1F2039FF
+}
