@@ -1,5 +1,5 @@
 import React from 'react';
-import {Head, Link} from "@inertiajs/react";
+import {Head} from "@inertiajs/react";
 import {PageProps} from "@/types";
 import Header from "@/Components/Header";
 import {YoutubeVideos} from "@/Components/YoutubeVideos";
@@ -76,6 +76,7 @@ const CourtsMetrages = ({auth}: PageProps) => {
                         <YoutubeVideos id={"9lsbivUrTac"} name={"HARCÈLEMENT SCOLAIRE : Film dénonciateur"}
                                        className={"flex flex-col items-center"}/>
                         <YoutubeVideos id={"Au481-cDMNw"} name={"Rédemption"} className={"flex flex-col items-center"}/>
+                        <YoutubeVideos id={"uMSzJej4MI8"} name={"A bout de souffle"} className={"flex flex-col items-center"}/>
                     </section>
                     <a className={"fixed left-5 bottom-5 bg-white border border-gray-400 shadow p-2 rounded-lg hover:bg-gray-300 " +
                         "active:bg-gray-400"}
