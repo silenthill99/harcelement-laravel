@@ -1,7 +1,7 @@
 import {PageProps} from '@/types';
 import PageStructure from "@/Components/PageStructure";
 
-const Welcome = ({auth}: PageProps) => {
+const Welcome = ({auth, laravelVersion}: PageProps<{laravelVersion: string}>) => {
 
 
     return (
@@ -18,6 +18,7 @@ const Welcome = ({auth}: PageProps) => {
                     Vous êtes témoin ? Victime ? Parlez-en autour de vous. <br/>
                     Le harcèlement est puni par la loi.
                 </p>
+                <span>{laravelVersion}</span>
             </section>
         </PageStructure>
     );
