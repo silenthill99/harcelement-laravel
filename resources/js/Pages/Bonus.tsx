@@ -7,7 +7,7 @@ import PageStructure from "@/Components/PageStructure";
 
 const Bonus = ({auth}: PageProps) => {
     return (
-        <PageStructure auth={auth} title={"Bonus"}>
+        <PageStructure auth={auth.user} title={"Bonus"}>
             <section className={"container mx-auto"}>
                 <YoutubeVideos id="utkuLf8mE6k" name='INFLUENCEUSE - Court Métrage' className={"m-5 md:m-0 flex flex-col items-center"}/>
                 <p className={"text-justify md:text-center px-5 md:p-0"}>J'aimerais partager avec vous ce petit court métrage qui n'a rien à voir avec le harcèlement,<br/>mais

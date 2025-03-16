@@ -4,7 +4,7 @@ import PageStructure from "@/Components/PageStructure";
 
 const Contacts = ({auth}: PageProps) => {
     return (
-        <PageStructure auth={auth} title={"Nous contacter"} className={"container mx-auto"}>
+        <PageStructure auth={auth.user} title={"Nous contacter"} className={"container mx-auto"}>
             <h1>Contacts</h1>
             <form action="" method="get">
                 <label htmlFor="">Sujet de votre demande</label> <br/>

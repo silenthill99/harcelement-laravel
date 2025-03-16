@@ -1,21 +1,24 @@
-import React, {PropsWithChildren} from 'react';
-import {PageProps} from "@/types";
+import React from 'react';
+import {User} from "@/types";
 import {Head} from "@inertiajs/react";
 import Header from "@/Components/Header";
 import Footer from "@/Components/Footer";
 
+type StructureProps = {
+    children: React.ReactNode;
+    auth: User;
+    title: string;
+    className?: string;
+}
 
-const PageStructure = ({children, auth, title, className}: PropsWithChildren<PageProps> & {
-    title: string,
-    className?: string
-}) => {
+const PageStructure = (props: StructureProps) => {
     return (
         <>
             <section className={"min-h-screen flex flex-col"}>
-                <Head title={title}/>
-                <Header auth={auth.user}/>
-                <main className={`grow ${className}`}>
-                    {children}
+                <Head title={props.title} />
+                <Header auth={props.auth}/>
+                <main className={`grow ${props.className}`}>
+                    {props.children}
                 </main>
                 <Footer/>
             </section>

@@ -5,7 +5,7 @@ const Welcome = ({auth}: PageProps) => {
 
 
     return (
-        <PageStructure auth={auth} title={"Accueil"} className={"container mx-auto"}>
+        <PageStructure auth={auth.user} title={"Accueil"} className={"container mx-auto"}>
             <div className='flex justify-center container mx-auto'>
                 <h1 className='m-6'>Aide au harcèlement</h1>
             </div>

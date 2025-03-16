@@ -5,7 +5,7 @@ import PageStructure from "@/Components/PageStructure";
 
 const QuelquesClips = ({auth}: PageProps) => {
     return (
-        <PageStructure auth={auth} title={"Quelques clips"}
+        <PageStructure auth={auth.user} title={"Quelques clips"}
                        className={"grid grid-cols-1 lg:grid-cols-2 gap-5 container mx-auto my-8"}>
             <YoutubeVideos id="Rp5U5mdARgY" name="Indochine - College Boy (Clip officiel)"
                            className={"mx-auto text-center"}/>

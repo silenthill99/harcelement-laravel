@@ -6,7 +6,7 @@ import PageStructure from "@/Components/PageStructure";
 
 const QuelquesFilms = ({auth}: PageProps) => {
     return (
-        <PageStructure auth={auth} title={"Quelques films"}>
+        <PageStructure auth={auth.user} title={"Quelques films"}>
             <h1 className="text-center">Quelques films</h1>
             <section className="bg-[#660000] text-white">
                 <div className={"gap-2 grid md:grid-cols-2 p-5 container mx-auto"}>
