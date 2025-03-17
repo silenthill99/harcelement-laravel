@@ -1,9 +1,7 @@
 import {PageProps} from '@/types';
 import PageStructure from "@/Components/PageStructure";
 
-const Welcome = ({auth, laravelVersion}: PageProps<{laravelVersion: string}>) => {
-
-
+const Welcome = ({auth}: PageProps) => {
     return (
         <PageStructure auth={auth.user} title={"Accueil"} className={"container mx-auto"}>
             <div className='flex justify-center container mx-auto'>
@@ -18,7 +16,6 @@ const Welcome = ({auth, laravelVersion}: PageProps<{laravelVersion: string}>) =>
                     Vous êtes témoin ? Victime ? Parlez-en autour de vous. <br/>
                     Le harcèlement est puni par la loi.
                 </p>
-                <span>{laravelVersion}</span>
             </section>
         </PageStructure>
     );
