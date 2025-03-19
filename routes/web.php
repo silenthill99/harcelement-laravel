@@ -14,6 +14,10 @@ Route::get('/', function () {
     ]);
 })->name("accueil");
 
+Route::get("/forum", function() {
+    return Inertia::render('Forum');
+})->name("forum");
+
 Route::get("/contacts", function () {
     return Inertia::render('Contacts');
 })->name("contacts");

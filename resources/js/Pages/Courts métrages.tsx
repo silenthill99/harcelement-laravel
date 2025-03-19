@@ -72,6 +72,7 @@ const CourtsMetrages = ({auth}: PageProps) => {
                                    className={"flex flex-col items-center"}/>
                     <YoutubeVideos id={"Au481-cDMNw"} name={"Rédemption"} className={"flex flex-col items-center"}/>
                     <YoutubeVideos id={"uMSzJej4MI8"} name={"A bout de souffle"} className={"flex flex-col items-center"}/>
+                    <YoutubeVideos id={"hWr0-zjoHVI"} name={"Ca va aller, le film"} className={"mx-auto"}/>
                 </section>
                 <a className={"fixed left-5 bottom-5 bg-white border border-gray-400 shadow p-2 rounded-lg hover:bg-gray-300 " +
                     "active:bg-gray-400"}
