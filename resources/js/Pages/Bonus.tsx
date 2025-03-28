@@ -2,7 +2,6 @@ import React from 'react';
 import {PageProps} from "@/types";
 import {YoutubeVideos} from "@/Components/YoutubeVideos";
 import {DeezerMusics} from "@/Components/DeezerMusics";
-import Lili from "../../images/lili est harcelée à l'école.jpg"
 import PageStructure from "@/Components/PageStructure";
 
 const Bonus = ({auth}: PageProps) => {
@@ -18,7 +17,7 @@ const Bonus = ({auth}: PageProps) => {
             <h1 className={"text-center py-5"}>Quelques livres</h1>
             <div className={"border-y-2 border-black"}>
                 <div className={"container mx-auto grid grid-cols-2 p-5 gap-2"}>
-                    <img src={Lili} alt="" className={"w-1/2 border border-gray-400 relative top-0 left-1/2 -translate-x-1/2"}/>
+                    <img src="/images/lili%20est%20harcelée%20à%20l'école.jpg" alt="" className={"w-1/2 border border-gray-400 relative top-0 left-1/2 -translate-x-1/2"}/>
                     <div className={"text-center"}>
                         <h2 className={"underline"}>Lili est harcelée à l'école</h2>
                         <p className={"relative top-1/2 -translate-y-1/2"}>Valentine et ses copines ont trouvé un nouveau jeu : ridiculiser Lili, lui faire subir des
