@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Message;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -41,6 +44,15 @@ Route::get("/quelques_films", function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::post("/contacts", function (Request $request) {
+    $message = Message::create([
+        "subject" => $request->subject,
+        "email" => $request->email,
+        "message" => $request->message
+    ]);
+    return Inertia::render('Contacts');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
