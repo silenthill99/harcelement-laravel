@@ -6,6 +6,7 @@ import PageStructure from "@/Components/PageStructure";
 const CourtsMetrages = ({auth}: PageProps) => {
     return (
         <PageStructure auth={auth.user} title={"Courts métrages"}>
+            <p>Page de test</p>
             <div className={"container mx-auto p-5 md:p-4"}>
                 <h1 className="text-center p-10">Quelques courts métrages</h1>
                 <p className="text-center">Sur cette page, vous y trouverez toute une floppée de courts métrages
