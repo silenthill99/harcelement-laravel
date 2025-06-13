@@ -2,11 +2,16 @@ import React from 'react';
 import {PageProps} from "@/types";
 import {YoutubeVideos} from "@/Components/YoutubeVideos";
 import PageStructure from "@/Components/PageStructure";
+import {usePage} from "@inertiajs/react";
 
-const CourtsMetrages = ({auth}: PageProps) => {
+type VideoProps = {
+    title: string;
+    link: string;
+}
+
+const CourtsMetrages = ({auth, videos}: PageProps<{videos: VideoProps[]}>) => {
     return (
         <PageStructure auth={auth.user} title={"Courts métrages"}>
-            <p>Page de test</p>
             <div className={"container mx-auto p-5 md:p-4"}>
                 <h1 className="text-center p-10">Quelques courts métrages</h1>
                 <p className="text-center">Sur cette page, vous y trouverez toute une floppée de courts métrages
@@ -15,8 +20,10 @@ const CourtsMetrages = ({auth}: PageProps) => {
                     certains
                     d'entre eux finissent mal.</p>
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-5 text-center">
-                    <YoutubeVideos id="5Nxjwau7aEY" name="DANS NOS YEUX- Court métrage"
-                                   className={"flex flex-col items-center"}/>
+                    {videos.map((v, index) => (
+                        <YoutubeVideos id={v.link.replace("https://www.youtube.com/watch?v=", "")} name={v.title} className={"flex flex-col items-center"}/>
+                    ))}
+
                     <YoutubeVideos id="UE6ZlMc4X48" name="Le jour de trop"
                                    className={"flex flex-col items-center"}/>
                     <YoutubeVideos id="QcV-r8FpnyU" name="AGIS! Court-métrage contre le harcèlement"

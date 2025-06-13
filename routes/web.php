@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VideoController;
 use App\Models\Message;
+use App\Models\Video;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +32,8 @@ Route::get('/clips', function() {
 })->name("clips");
 
 Route::get("/courts_metrages", function () {
-   return Inertia::render('Courts métrages');
+    $videos = Video::all();
+   return Inertia::render('Courts métrages', ["videos" => $videos]);
 })->name("courts_metrages");
 
 Route::get("/bonus", function () {
@@ -59,5 +62,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get("/add", [VideoController::class, 'index'])->name('videos-show');
+Route::post("/add", [VideoController::class, "create"])->name('videos.create');
 
 require __DIR__.'/auth.php';
