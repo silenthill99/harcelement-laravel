@@ -24,8 +24,8 @@ const CourtsMetrages = ({auth, videos}: PageProps<{videos: VideoProps[]}>) => {
                     certains
                     d'entre eux finissent mal.</p>
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-5 text-center">
-                    {videos.map((v) => (
-                        <YoutubeVideos id={v.link.replace("https://www.youtube.com/watch?v=", "")} name={v.title} className={"flex flex-col items-center"}/>
+                    {videos.map((video) => (
+                        <YoutubeVideos id={video.link.replace("https://www.youtube.com/watch?v=", "")} name={video.title} className={"flex flex-col items-center"}/>
                     ))}
                     <YoutubeVideos id="QcV-r8FpnyU" name="AGIS! Court-métrage contre le harcèlement"
                                    className={"flex flex-col items-center"}/>
