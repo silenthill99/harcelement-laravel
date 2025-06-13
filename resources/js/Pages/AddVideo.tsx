@@ -13,7 +13,7 @@ type FormProps = {
 
 const AddVideo = ({auth}: PageProps) => {
 
-    const {data, setData, post, reset, errors, setError} = useForm<Required<FormProps>>({
+    const {data, setData, post, reset, errors} = useForm<Required<FormProps>>({
         title: '',
         link: '',
     });
@@ -21,7 +21,7 @@ const AddVideo = ({auth}: PageProps) => {
     const [localError, setLocalError] = useState<string | null>(null);
 
     const isValidUrl = (url: string) => {
-        return url.startsWith("https://www.youtube.com");
+        return url.startsWith("https://www.youtube.com") || url.startsWith("www.youtube.com") || url.startsWith("youtube.com");
     }
 
     function handleSubmit(e: FormEvent) {
@@ -57,14 +57,14 @@ const AddVideo = ({auth}: PageProps) => {
                     placeholder={"Lien Youtube"}
                     name="link"
                     id="link"
-                    value={data.link || "https://www.youtube.com/watch?v="}
+                    value={data.link}
                     onChange={(e) => {setData('link', e.target.value)}}
                     required
                 />
                 {localError && <p className="text-red-500 text-sm">{localError}</p>}
                 {errors.link && <p className="text-red-500 text-sm">{errors.link}</p>}
                 <br/>
-                <Button type={"submit"}>Valider</Button>
+                <Button type={"submit"} className={"cursor-pointer"}>Valider</Button>
             </form>
         </PageStructure>
     );
