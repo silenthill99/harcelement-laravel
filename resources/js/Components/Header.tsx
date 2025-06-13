@@ -34,7 +34,7 @@ const Header = (props: PageProps) => {
                 <Link href={route("accueil")} className={"py-5 w-full text-center active:bg-red-900"}>Accueil</Link>
                 <Link href={route("clips")} className={"py-5 w-full text-center active:bg-red-900"}>Quelques
                     clips</Link>
-                <Link href={route('courts_metrages')} className={"py-5 w-full text-center active:bg-red-900"}>Courts
+                <Link href={route('videos.index')} className={"py-5 w-full text-center active:bg-red-900"}>Courts
                     métrages</Link>
                 <Link href={route("bonus")} className={"py-5 w-full text-center active:bg-red-900"}>Bonus</Link>
                 <Link href={route("films")} className={"py-5 w-full text-center active:bg-red-900"}>Quelques
@@ -58,7 +58,7 @@ const Header = (props: PageProps) => {
                 <div className={"flex gap-2"}>
                     <Link href={route("accueil")} className={isActive("/")}>Accueil</Link>
                     <Link href={route("clips")} className={isActive("/clips")}>Quelques clips</Link>
-                    <Link href={route("courts_metrages")} className={isActive("/courts_metrages")}>Courts
+                    <Link href={route("videos.index")} className={isActive("/courts_metrages")}>Courts
                         métrages</Link>
                     <Link href={route("bonus")} className={isActive("/bonus")}>Bonus</Link>
                     <Link href={route("films")} className={isActive("/quelques_films")}>Quelques films</Link>

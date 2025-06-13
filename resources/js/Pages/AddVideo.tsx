@@ -33,7 +33,7 @@ const AddVideo = ({auth}: PageProps) => {
 
         setLocalError(null)
 
-        post(route('videos-show'), {
+        post(route('videos.store'), {
             onFinish: () => reset()
         })
     }
@@ -57,7 +57,7 @@ const AddVideo = ({auth}: PageProps) => {
                     placeholder={"Lien Youtube"}
                     name="link"
                     id="link"
-                    value={data.link}
+                    value={data.link || "https://www.youtube.com/watch?v="}
                     onChange={(e) => {setData('link', e.target.value)}}
                     required
                 />

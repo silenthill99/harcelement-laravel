@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : ven. 13 juin 2025 à 09:20
+-- Généré le : ven. 13 juin 2025 à 13:24
 -- Version du serveur : 8.0.35-0ubuntu0.22.04.1
 -- Version de PHP : 8.3.1
 
@@ -166,7 +166,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('kw7YV3buCv1JG2S5Oi0bUSDsN0vvNwF0xqYtldh5', NULL, '192.168.56.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 OPR/119.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicWpsdnVDTXBQSXVnbTF1RFNNNzIwSGthQUdwejdYcEZzQ1BJamZIVyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9oYXJjZWxlbWVudC50ZXN0L2FkZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1749806174);
+('3lbKhPAXkrYFiaHUhc7NvKyD4ljx9bJ9PtDvQQNs', 1, '192.168.56.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 OPR/119.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiaE9TN0U5VnJna0wzSm4ybWxmMUp3bG1KaUQ1NlFWWHlkSzBkWlFGaSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly9oYXJjZWxlbWVudC50ZXN0L2NvdXJ0c19tZXRyYWdlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjA6e31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1749817394);
 
 -- --------------------------------------------------------
 
@@ -211,7 +211,20 @@ CREATE TABLE `videos` (
 --
 
 INSERT INTO `videos` (`id`, `title`, `link`, `created_at`, `updated_at`) VALUES
-(1, 'DANS NOS YEUX- Court métrage', 'https://www.youtube.com/watch?v=5Nxjwau7aEY', '2025-06-13 09:16:11', '2025-06-13 09:16:11');
+(1, 'DANS NOS YEUX- Court métrage', 'https://www.youtube.com/watch?v=5Nxjwau7aEY', '2025-06-13 09:16:11', '2025-06-13 09:16:11'),
+(2, 'Le jour de trop', 'https://www.youtube.com/watch?v=UE6ZlMc4X48', '2025-06-13 09:29:23', '2025-06-13 09:29:23'),
+(3, 'AGIS! Court-métrage contre le harcèlement', 'https://www.youtube.com/watch?v=QcV-r8FpnyU', '2025-06-13 10:00:06', '2025-06-13 10:00:06'),
+(4, 'Un jeu soi-disant marrant', 'https://www.youtube.com/watch?v=vpbe_Aoihjk', '2025-06-13 11:18:45', '2025-06-13 11:18:45'),
+(5, 'RESTER DEBOUT', 'https://www.youtube.com/watch?v=PYLMLcVMXrQ', '2025-06-13 11:32:43', '2025-06-13 11:32:43'),
+(6, 'PUZZLE - COURT-MÉTRAGE 2021', 'https://www.youtube.com/watch?v=LZNuM_AMNQc', '2025-06-13 11:43:34', '2025-06-13 11:43:34'),
+(7, 'GRAVE ! (Harcèlement scolaire)', 'https://www.youtube.com/watch?v=6FMoiGghce4', '2025-06-13 11:48:40', '2025-06-13 11:48:40'),
+(8, 'Option AIS - Couleur alcool', 'https://www.youtube.com/watch?v=UCLHuEYHlBA', '2025-06-13 11:51:46', '2025-06-13 11:51:46'),
+(9, 'SAVONNETTE - Court Métrage Harcèlement Scolaire', 'https://www.youtube.com/watch?v=NekbISTowB0', '2025-06-13 11:56:53', '2025-06-13 11:56:53'),
+(10, 'Film sur le harcelement scolaire - Lisa', 'https://www.youtube.com/watch?v=sQhBRcNxayw', '2025-06-13 12:04:21', '2025-06-13 12:04:21'),
+(11, 'HARCÈLEMENT Court-métrage film complet', 'https://www.youtube.com/watch?v=4mx8KIU0xyY', '2025-06-13 12:16:32', '2025-06-13 12:16:32'),
+(12, 'Parle. - Court-métrage sur le harcèlement scolaire', 'https://www.youtube.com/watch?v=rcJf-tgknsY', '2025-06-13 12:20:38', '2025-06-13 12:20:38'),
+(13, 'Même pas en rêve ! Lycée Ernest Ferroul - Non au Harcèlement', 'https://www.youtube.com/watch?v=lq_rIomTOoA', '2025-06-13 12:21:52', '2025-06-13 12:21:52'),
+(14, 'Court métrage \"L\'indifférence tue\" prix \"Non au harcèlement\"', 'https://www.youtube.com/watch?v=AjCKSGUy148', '2025-06-13 12:23:14', '2025-06-13 12:23:14');
 
 --
 -- Index pour les tables déchargées
@@ -326,7 +339,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `videos`
 --
 ALTER TABLE `videos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

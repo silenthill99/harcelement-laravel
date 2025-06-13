@@ -31,10 +31,7 @@ Route::get('/clips', function() {
     return Inertia::render('Quelques clips');
 })->name("clips");
 
-Route::get("/courts_metrages", function () {
-    $videos = Video::all();
-   return Inertia::render('Courts métrages', ["videos" => $videos]);
-})->name("courts_metrages");
+Route::get("/courts_metrages", [VideoController::class, 'index'])->name("videos.index");
 
 Route::get("/bonus", function () {
     return Inertia::render('Bonus');
@@ -63,8 +60,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get("/add", [VideoController::class, 'index'])
-    ->name('videos-show')->middleware(['auth', 'verified']);
-Route::post("/add", [VideoController::class, "create"])->name('videos.create');
+Route::get("/add", [VideoController::class, 'create'])
+    ->name('videos.create')->middleware(['auth', 'verified']);
+Route::post("/add", [VideoController::class, "store"])->name('videos.store');
 
 require __DIR__.'/auth.php';
