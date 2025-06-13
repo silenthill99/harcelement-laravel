@@ -2,7 +2,8 @@ import React from 'react';
 import {PageProps} from "@/types";
 import {YoutubeVideos} from "@/Components/YoutubeVideos";
 import PageStructure from "@/Components/PageStructure";
-import {usePage} from "@inertiajs/react";
+import {router} from "@inertiajs/react";
+import {Button} from "@/Components/ui/button";
 
 type VideoProps = {
     title: string;
@@ -12,20 +13,20 @@ type VideoProps = {
 const CourtsMetrages = ({auth, videos}: PageProps<{videos: VideoProps[]}>) => {
     return (
         <PageStructure auth={auth.user} title={"Courts métrages"}>
-            <div className={"container mx-auto p-5 md:p-4"}>
+            <div className={"container mx-auto p-5 md:p-4 flex flex-col justify-center gap-5"}>
                 <h1 className="text-center p-10">Quelques courts métrages</h1>
+                <Button className={"self-center"} onClick={() => {
+                    router.visit(route('videos-show'))
+                }}>Ajouter une vidéo</Button>
                 <p className="text-center">Sur cette page, vous y trouverez toute une floppée de courts métrages
                     évoquant le
                     harcèlement scolaire. Néanmoins, il faut savoir qu'en raison du sujet qui est très délicat,
                     certains
                     d'entre eux finissent mal.</p>
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-5 text-center">
-                    {videos.map((v, index) => (
+                    {videos.map((v) => (
                         <YoutubeVideos id={v.link.replace("https://www.youtube.com/watch?v=", "")} name={v.title} className={"flex flex-col items-center"}/>
                     ))}
-
-                    <YoutubeVideos id="UE6ZlMc4X48" name="Le jour de trop"
-                                   className={"flex flex-col items-center"}/>
                     <YoutubeVideos id="QcV-r8FpnyU" name="AGIS! Court-métrage contre le harcèlement"
                                    className={"flex flex-col items-center"}/>
                     <YoutubeVideos id="vpbe_Aoihjk"

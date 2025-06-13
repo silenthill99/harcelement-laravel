@@ -63,7 +63,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get("/add", [VideoController::class, 'index'])->name('videos-show');
+Route::get("/add", [VideoController::class, 'index'])
+    ->name('videos-show')->middleware(['auth', 'verified']);
 Route::post("/add", [VideoController::class, "create"])->name('videos.create');
 
 require __DIR__.'/auth.php';
