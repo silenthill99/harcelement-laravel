@@ -15,9 +15,11 @@ const CourtsMetrages = ({auth, videos}: PageProps<{videos: VideoProps[]}>) => {
         <PageStructure auth={auth.user} title={"Courts métrages"}>
             <div className={"container mx-auto p-5 md:p-4 flex flex-col justify-center gap-5"}>
                 <h1 className="text-center p-10">Quelques courts métrages</h1>
-                <Button className={"self-center cursor-pointer"} onClick={() => {
-                    router.visit(route('videos.create'))
-                }}>Ajouter une vidéo</Button>
+                {auth.user && (
+                    <Button className={"self-center cursor-pointer"} onClick={() => {
+                        router.visit(route('videos.create'))
+                    }}>Ajouter une vidéo</Button>
+                )}
                 <p className="text-center">Sur cette page, vous y trouverez toute une floppée de courts métrages
                     évoquant le
                     harcèlement scolaire. Néanmoins, il faut savoir qu'en raison du sujet qui est très délicat,
