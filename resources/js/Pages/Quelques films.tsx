@@ -31,7 +31,7 @@ const QuelquesFilms = ({auth}: PageProps) => {
                 <h1 className={"underline"}>Unfriended</h1>
                 <img src="/images/unfriended.jpg" alt="Unfriended" className={"max-w-full h-auto mx-auto row-span-3"} width={488}/>
                 <p className={"text-justify"}>
-                    Lors d'une conversation sur skype, un groupe d'ais est pris en grippe par une l'âme de Laura Barns,
+                    Lors d'une conversation sur skype, un groupe d'amis est pris en grippe par une l'âme de Laura Barns,
                     Une de leurs amies s'étant suicidée suite au cyber-harcèlement qu'elle a subit.
                 </p>
                 <YoutubeVideos id={"JlzyAo00yBU"} name={"Bande-annonce"} className={"flex flex-col items-center"}/>
