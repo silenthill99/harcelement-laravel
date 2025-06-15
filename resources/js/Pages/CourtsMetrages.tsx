@@ -2,10 +2,11 @@ import React from 'react';
 import {PageProps} from "@/types";
 import {YoutubeVideos} from "@/Components/YoutubeVideos";
 import PageStructure from "@/Components/PageStructure";
-import {router} from "@inertiajs/react";
+import {Link, router} from "@inertiajs/react";
 import {Button} from "@/Components/ui/button";
 
 type VideoProps = {
+    id: number;
     title: string;
     link: string;
 }
@@ -27,7 +28,14 @@ const CourtsMetrages = ({auth, videos}: PageProps<{videos: VideoProps[]}>) => {
                     d'entre eux finissent mal.</p>
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-5 text-center">
                     {videos.map((video) => (
-                        <YoutubeVideos id={video.link.replace("https://www.youtube.com/watch?v=", "")} name={video.title} className={"flex flex-col items-center"}/>
+                        <div key={video.id} className={"relative group"}>
+                            {auth.user && (
+                                <Link href={route("videos.edit", video.id)} className={"hidden absolute top-0 right-25 group-hover:inline"}>
+                                    <img src="/images/crayon.svg" alt="Modifier" width={20} height={20}/>
+                                </Link>
+                            )}
+                            <YoutubeVideos id={video.link.replace("https://www.youtube.com/watch?v=", "")} name={video.title} className={"flex flex-col items-center"}/>
+                        </div>
                     ))}
                 </section>
                 <a className={"fixed left-5 bottom-5 bg-white border border-gray-400 shadow p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400 cursor-pointer"}

@@ -18,6 +18,7 @@ export default function Login({
         email: '',
         password: '',
         remember: false as boolean,
+        redirect_to: window.location.pathname
     });
 
     const submit: FormEventHandler = (e) => {

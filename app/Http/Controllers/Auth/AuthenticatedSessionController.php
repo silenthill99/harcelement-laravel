@@ -33,7 +33,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('accueil', absolute: false));
+        $redirectTo = $request->input('redirect_to', '/');
+
+        return redirect($redirectTo)->with("success", "Connexion réussie");
     }
 
     /**

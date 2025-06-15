@@ -64,4 +64,7 @@ Route::get("/add", [VideoController::class, 'create'])
     ->name('videos.create')->middleware(['auth', 'verified']);
 Route::post("/add", [VideoController::class, "store"])->name('videos.store');
 
+Route::get("/update/{id}", [VideoController::class, "edit"])->name('videos.edit');
+Route::post("/update/{id}", [VideoController::class, "update"])->name('videos.update');
+
 require __DIR__.'/auth.php';
