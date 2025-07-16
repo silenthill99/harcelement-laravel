@@ -25,6 +25,7 @@ Route::get("/forum", function() {
 })->name("forum");
 
 Route::get("/contacts", function () {
+
     return Inertia::render('Contacts');
 })->name("contacts");
 

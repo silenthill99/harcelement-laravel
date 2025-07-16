@@ -12,12 +12,17 @@ type VideoProps = {
     created_at: string;
 }
 
-const CourtsMetrages = ({auth, videos}: PageProps<{videos: VideoProps[]}>) => {
+type RoleProps = {
+    id: number;
+    name: string;
+}
+
+const CourtsMetrages = ({auth, videos, role}: PageProps<{videos: VideoProps[], role: RoleProps}>) => {
     return (
         <PageStructure auth={auth.user} title={"Courts métrages"}>
             <div className={"container mx-auto p-5 md:p-4 flex flex-col justify-center gap-5"}>
                 <h1 className="text-center p-10">Quelques courts métrages</h1>
-                {auth.user && (
+                {auth.user && role.id === 2 && (
                     <Button className={"self-center cursor-pointer"} onClick={() => {
                         router.visit(route('videos.create'))
                     }}>Ajouter une vidéo</Button>

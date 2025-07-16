@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class VideoController extends Controller
 {
     public function index() {
         $videos = Video::all();
-        return Inertia::render('CourtsMetrages', ["videos" => $videos]);
+        $role = Auth::user()->roles()->first();
+        return Inertia::render('CourtsMetrages', ["videos" => $videos, 'role' => $role]);
     }
 
    public function create() {
