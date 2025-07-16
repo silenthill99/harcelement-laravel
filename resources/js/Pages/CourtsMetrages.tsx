@@ -9,6 +9,7 @@ type VideoProps = {
     id: number;
     title: string;
     link: string;
+    created_at: string;
 }
 
 const CourtsMetrages = ({auth, videos}: PageProps<{videos: VideoProps[]}>) => {
@@ -36,6 +37,11 @@ const CourtsMetrages = ({auth, videos}: PageProps<{videos: VideoProps[]}>) => {
                             )}
                             <YoutubeVideos id={video.link.replace("https://www.youtube.com/watch?v=", "")} name={video.title} className={"flex flex-col items-center"}/>
                         </div>
+                    ))}
+                    {videos.map((video) => (
+                        video.id === 32 && (
+                            <p>{new Date(video.created_at).toLocaleString()}</p>
+                        )
                     ))}
                 </section>
                 <a className={"fixed left-5 bottom-5 bg-white border border-gray-400 shadow p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400 cursor-pointer"}

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClipController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VideoController;
@@ -27,9 +28,7 @@ Route::get("/contacts", function () {
     return Inertia::render('Contacts');
 })->name("contacts");
 
-Route::get('/clips', function() {
-    return Inertia::render('Quelques clips');
-})->name("clips");
+Route::get('/clips', [ClipController::class, "index"])->name("clips");
 
 Route::get("/courts_metrages", [VideoController::class, 'index'])->name("videos.index");
 
