@@ -35,7 +35,7 @@ const CourtsMetrages = ({auth, videos, role}: PageProps<{videos: VideoProps[], r
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-5 text-center">
                     {videos.map((video) => (
                         <div key={video.id} className={"relative group"}>
-                            {auth.user && (
+                            {auth.user && role.id === 2 && (
                                 <Link href={route("videos.edit", video.id)} className={"hidden absolute top-0 right-25 group-hover:inline"}>
                                     <img src="/images/crayon.svg" alt="Modifier" width={20} height={20}/>
                                 </Link>
