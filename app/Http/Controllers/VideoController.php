@@ -11,7 +11,13 @@ class VideoController extends Controller
 {
     public function index() {
         $videos = Video::all();
-        $role = Auth::user()->roles()->first();
+
+        $role = null;
+
+        if (Auth::check()) {
+            $role = Auth::user()->roles()->first();
+        }
+
         return Inertia::render('CourtsMetrages', ["videos" => $videos, 'role' => $role]);
     }
 
