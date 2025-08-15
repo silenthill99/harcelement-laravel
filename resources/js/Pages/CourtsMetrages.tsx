@@ -1,24 +1,28 @@
 import React from 'react';
+import {PageProps} from "@/types";
 import {YoutubeVideos} from "@/Components/YoutubeVideos";
 import PageStructure from "@/Components/PageStructure";
-import {Link, router, usePage} from "@inertiajs/react";
+import {Link, router} from "@inertiajs/react";
 import {Button} from "@/Components/ui/button";
-import {SharedData} from "@/types";
 
 type VideoProps = {
     id: number;
     title: string;
     link: string;
+    created_at: string;
 }
 
-const CourtsMetrages = () => {
+type RoleProps = {
+    id: number;
+    name: string;
+}
 
-    const {auth, videos} = usePage<SharedData & {videos: VideoProps[]}>().props
+const CourtsMetrages = ({auth, videos, role}: PageProps<{videos: VideoProps[], role: RoleProps}>) => {
     return (
         <PageStructure auth={auth.user} title={"Courts métrages"}>
             <div className={"container mx-auto p-5 md:p-4 flex flex-col justify-center gap-5"}>
                 <h1 className="text-center p-10">Quelques courts métrages</h1>
-                {auth.user && (
+                {auth.user && role.id === 2 && (
                     <Button className={"self-center cursor-pointer"} onClick={() => {
                         router.visit(route('videos.create'))
                     }}>Ajouter une vidéo</Button>
@@ -31,13 +35,18 @@ const CourtsMetrages = () => {
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-5 text-center">
                     {videos.map((video) => (
                         <div key={video.id} className={"relative group"}>
-                            {auth.user && (
+                            {auth.user && role.id === 2 && (
                                 <Link href={route("videos.edit", video.id)} className={"hidden absolute top-0 right-25 group-hover:inline"}>
                                     <img src="/images/crayon.svg" alt="Modifier" width={20} height={20}/>
                                 </Link>
                             )}
                             <YoutubeVideos id={video.link.replace("https://www.youtube.com/watch?v=", "")} name={video.title} className={"flex flex-col items-center"}/>
                         </div>
+                    ))}
+                    {videos.map((video) => (
+                        video.id === 32 && (
+                            <p>{new Date(video.created_at).toLocaleString()}</p>
+                        )
                     ))}
                 </section>
                 <a className={"fixed left-5 bottom-5 bg-white border border-gray-400 shadow p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400 cursor-pointer"}
