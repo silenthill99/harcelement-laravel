@@ -1,10 +1,12 @@
 import React from 'react';
-import {PageProps} from "@/types";
+import {SharedData} from "@/types";
 import {YoutubeVideos} from "@/Components/YoutubeVideos";
 import {DeezerMusics} from "@/Components/DeezerMusics";
 import PageStructure from "@/Components/PageStructure";
+import {usePage} from "@inertiajs/react";
 
-const Bonus = ({auth}: PageProps) => {
+const Bonus = () => {
+    const {auth} = usePage<SharedData>().props
     return (
         <PageStructure auth={auth.user} title={"Bonus"}>
             <section className={"container mx-auto"}>

@@ -1,7 +1,7 @@
 import React, {FormEvent} from 'react';
-import {PageProps} from "@/types";
+import {SharedData} from "@/types";
 import PageStructure from "@/Components/PageStructure";
-import {useForm} from "@inertiajs/react";
+import {useForm, usePage} from "@inertiajs/react";
 import {Textarea} from "@/Components/ui/textarea";
 import {Input} from "@/Components/ui/input";
 import {Label} from "@/Components/ui/label";
@@ -12,7 +12,9 @@ type ContactForm = {
     message: string;
 }
 
-const Contacts = ({auth}: PageProps) => {
+const Contacts = () => {
+
+    const {auth} = usePage<SharedData>().props
 
     const { data, setData, post, reset } = useForm<ContactForm>({
         subject: "",

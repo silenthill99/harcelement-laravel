@@ -1,9 +1,9 @@
 import React, {FormEvent, useState} from 'react';
 import PageStructure from "@/Components/PageStructure";
-import {PageProps} from "@/types";
+import { SharedData} from "@/types";
 import {Input} from "@/Components/ui/input";
 import {Label} from "@/Components/ui/label";
-import {useForm} from "@inertiajs/react";
+import {useForm, usePage} from "@inertiajs/react";
 import {Button} from "@/Components/ui/button";
 
 type FormProps = {
@@ -11,7 +11,9 @@ type FormProps = {
     link: string
 }
 
-const AddVideo = ({auth}: PageProps) => {
+const AddVideo = () => {
+
+    const {auth} = usePage<SharedData>().props
 
     const {data, setData, post, reset, errors} = useForm<Required<FormProps>>({
         title: '',

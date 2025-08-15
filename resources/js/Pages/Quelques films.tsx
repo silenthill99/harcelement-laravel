@@ -1,9 +1,11 @@
 import React from 'react';
-import {PageProps} from "@/types";
 import {YoutubeVideos} from "@/Components/YoutubeVideos";
 import PageStructure from "@/Components/PageStructure";
+import {usePage} from "@inertiajs/react";
+import {SharedData} from "@/types";
 
-const QuelquesFilms = ({auth}: PageProps) => {
+const QuelquesFilms = () => {
+    const {auth} = usePage<SharedData>().props
     return (
         <PageStructure auth={auth.user} title={"Quelques films"}>
             <h1 className="text-center">Quelques films</h1>

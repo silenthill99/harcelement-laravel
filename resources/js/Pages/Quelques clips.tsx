@@ -1,9 +1,11 @@
 import React from 'react';
 import {YoutubeVideos} from "@/Components/YoutubeVideos";
-import {PageProps} from "@/types";
 import PageStructure from "@/Components/PageStructure";
+import {usePage} from "@inertiajs/react";
+import {SharedData} from "@/types";
 
-const QuelquesClips = ({auth}: PageProps) => {
+const QuelquesClips = () => {
+    const {auth} = usePage<SharedData>().props
     return (
         <PageStructure auth={auth.user} title={"Quelques clips"}
                        className={"grid grid-cols-1 lg:grid-cols-2 gap-5 container mx-auto my-8"}>

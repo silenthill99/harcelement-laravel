@@ -1,9 +1,9 @@
 import React from 'react';
-import {PageProps} from "@/types";
 import {YoutubeVideos} from "@/Components/YoutubeVideos";
 import PageStructure from "@/Components/PageStructure";
-import {Link, router} from "@inertiajs/react";
+import {Link, router, usePage} from "@inertiajs/react";
 import {Button} from "@/Components/ui/button";
+import {SharedData} from "@/types";
 
 type VideoProps = {
     id: number;
@@ -11,7 +11,9 @@ type VideoProps = {
     link: string;
 }
 
-const CourtsMetrages = ({auth, videos}: PageProps<{videos: VideoProps[]}>) => {
+const CourtsMetrages = () => {
+
+    const {auth, videos} = usePage<SharedData & {videos: VideoProps[]}>().props
     return (
         <PageStructure auth={auth.user} title={"Courts métrages"}>
             <div className={"container mx-auto p-5 md:p-4 flex flex-col justify-center gap-5"}>
