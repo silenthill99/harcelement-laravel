@@ -33,7 +33,7 @@ const CourtsMetrages = () => {
 
     const {auth, videos, role} = usePage<SharedData & Props>().props
     return (
-        <PageStructure auth={auth.user} title={"Courts métrages"}>
+        <PageStructure title={"Courts métrages"}>
             <div className={"container mx-auto p-5 md:p-4 flex flex-col justify-center gap-5"}>
                 <h1 className="text-center p-10">Quelques courts métrages</h1>
                 {auth.user && role.id === 2 && (

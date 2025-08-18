@@ -14,7 +14,7 @@ type FormProps = {
 
 const Update = () => {
 
-    const {auth, video} = usePage<SharedData & {video: FormProps}>().props
+    const {video} = usePage<SharedData & {video: FormProps}>().props
 
     const {data, setData, post, reset} = useForm<Required<FormProps>>({
         id: video.id,
@@ -30,7 +30,7 @@ const Update = () => {
     }
 
     return (
-        <PageStructure auth={auth.user} title={"Mettre à jour"} className={"container mx-auto p-5 md:p-4"}>
+        <PageStructure title={"Mettre à jour"} className={"container mx-auto p-5 md:p-4"}>
             <form method={"POST"} onSubmit={handleSubmit}>
                 <Input type={"hidden"} value={data.id} onChange={(e) => setData("id", parseInt(e.target.value))}/>
                 <Label htmlFor={"title"}>Titre de la vidéo</Label>

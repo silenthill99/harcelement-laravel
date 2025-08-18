@@ -1,15 +1,19 @@
 import React, {useState} from 'react';
 import {Link, usePage} from "@inertiajs/react";
 import PrimaryButton from "@/Components/PrimaryButton";
-import {User} from "@/types";
+import {SharedData} from "@/types";
+import {route} from "ziggy-js";
 
-type PageProps = {
-    auth: User;
-}
 
-const Header = (props: PageProps) => {
-    const {url} = usePage();
-    const isActive = (link: string) => `bg-red-500 text-white p-1 duration-300 hover:px-5 hover:bg-orange-500 hover:rounded-full ${link === url && "underline"}`
+const Header = () => {
+    const {auth} = usePage<SharedData>().props;
+    const isActive = (link: string) => {
+        console.log(link)
+        return (
+            `bg-red-500 text-white p-1 duration-300 hover:px-5 hover:bg-orange-500 hover:rounded-full ${route().current(link) && "underline"}`
+        )
+    }
+
 
     const [showMenu, setShowMenu] = useState(false);
 
@@ -32,7 +36,7 @@ const Header = (props: PageProps) => {
                     </svg>
                 </button>
                 <Link href={route("accueil")} className={"py-5 w-full text-center active:bg-red-900"}>Accueil</Link>
-                <Link href={route("clips")} className={"py-5 w-full text-center active:bg-red-900"}>Quelques
+                <Link href={route("clips.index")} className={"py-5 w-full text-center active:bg-red-900"}>Quelques
                     clips</Link>
                 <Link href={route('videos.index')} className={"py-5 w-full text-center active:bg-red-900"}>Courts
                     métrages</Link>
@@ -43,7 +47,7 @@ const Header = (props: PageProps) => {
                 <Link href={route("forum")} className={"py-5 w-full text-center active:bg-red-900"}>Forum</Link>
                 <div className={"absolute top-full -translate-y-full left-2 text-sm"}>
                     {
-                        props.auth ?
+                        auth.user ?
                             <Link href={route('register')}>Tableau de bord</Link> :
                             <div className={"flex gap-2"}>
                                 <Link href={route("login")}>Se connecter</Link>
@@ -56,16 +60,16 @@ const Header = (props: PageProps) => {
             {/*Menu PC*/}
             <nav className={"hidden lg:flex justify-between items-center container mx-auto p-2"}>
                 <div className={"flex gap-2"}>
-                    <Link href={route("accueil")} className={isActive("/")}>Accueil</Link>
-                    <Link href={route("clips")} className={isActive("/clips")}>Quelques clips</Link>
-                    <Link href={route("videos.index")} className={isActive("/courts_metrages")}>Courts
+                    <Link href={route("accueil")} className={isActive("accueil")}>Accueil</Link>
+                    <Link href={route('clips.index')} className={isActive('clips.index')}>Quelques clips</Link>
+                    <Link href={route("videos.index")} className={isActive("videos.index")}>Courts
                         métrages</Link>
-                    <Link href={route("bonus")} className={isActive("/bonus")}>Bonus</Link>
-                    <Link href={route("films")} className={isActive("/quelques_films")}>Quelques films</Link>
-                    <Link href={route("contacts")} className={isActive("/contacts")}>Nous contacter </Link>
-                    <Link href={route('forum')} className={isActive('/forum')}>Forum</Link>
+                    <Link href={route("bonus")} className={isActive("bonus")}>Bonus</Link>
+                    <Link href={route("films")} className={isActive("films")}>Quelques films</Link>
+                    <Link href={route("contacts")} className={isActive("contacts")}>Nous contacter </Link>
+                    <Link href={route('forum')} className={isActive('forum')}>Forum</Link>
                 </div>
-                {props.auth ?
+                {auth.user ?
                     <Link href={route('dashboard')} className={"hover:underline active:text-gray-400"}>Tableau de
                         bord</Link> :
                     <div className={"flex gap-2 justify-end"}>

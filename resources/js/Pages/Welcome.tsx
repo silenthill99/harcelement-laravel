@@ -1,11 +1,8 @@
 import PageStructure from "@/Components/PageStructure";
-import {usePage} from "@inertiajs/react";
-import {SharedData} from "@/types";
 
 const Welcome = () => {
-    const {auth} = usePage<SharedData>().props
     return (
-        <PageStructure auth={auth.user} title={"Accueil"} className={"container mx-auto"}>
+        <PageStructure title={"Accueil"} className={"container mx-auto"}>
             <div className='flex justify-center container mx-auto'>
                 <h1 className='m-6'>Aide au harcèlement</h1>
             </div>

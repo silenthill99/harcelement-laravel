@@ -1,14 +1,11 @@
 import React from 'react';
-import {SharedData} from "@/types";
 import {YoutubeVideos} from "@/Components/YoutubeVideos";
 import {DeezerMusics} from "@/Components/DeezerMusics";
 import PageStructure from "@/Components/PageStructure";
-import {usePage} from "@inertiajs/react";
 
 const Bonus = () => {
-    const {auth} = usePage<SharedData>().props
     return (
-        <PageStructure auth={auth.user} title={"Bonus"}>
+        <PageStructure title={"Bonus"}>
             <section className={"container mx-auto"}>
                 <YoutubeVideos id="utkuLf8mE6k" name='INFLUENCEUSE - Court Métrage' className={"m-5 md:m-0 flex flex-col items-center"}/>
                 <p className={"text-justify md:text-center px-5 md:p-0"}>J'aimerais partager avec vous ce petit court métrage qui n'a rien à voir avec le harcèlement,<br/>mais

@@ -29,7 +29,9 @@ Route::get("/contacts", function () {
     return Inertia::render('Contacts');
 })->name("contacts");
 
-Route::get('/clips', [ClipController::class, "index"])->name("clips");
+Route::resource('/clips', ClipController::class);
+
+//Route::get('/clips', [ClipController::class, "index"])->name("clips");
 
 Route::get("/courts_metrages", [VideoController::class, 'index'])->name("videos.index");
 

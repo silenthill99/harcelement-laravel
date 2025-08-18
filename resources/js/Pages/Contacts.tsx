@@ -1,7 +1,6 @@
 import React, {FormEvent} from 'react';
-import {SharedData} from "@/types";
 import PageStructure from "@/Components/PageStructure";
-import {useForm, usePage} from "@inertiajs/react";
+import {useForm} from "@inertiajs/react";
 import {Textarea} from "@/Components/ui/textarea";
 import {Input} from "@/Components/ui/input";
 import {Label} from "@/Components/ui/label";
@@ -13,9 +12,6 @@ type ContactForm = {
 }
 
 const Contacts = () => {
-
-    const {auth} = usePage<SharedData>().props
-
     const { data, setData, post, reset } = useForm<ContactForm>({
         subject: "",
         email: "",
@@ -30,7 +26,7 @@ const Contacts = () => {
     }
 
     return (
-        <PageStructure auth={auth.user} title={"Nous contacter"} className={"container mx-auto"}>
+        <PageStructure title={"Nous contacter"} className={"container mx-auto"}>
             <h1>Contacts</h1>
             <form action="" method="post" onSubmit={submit}>
                 <Label htmlFor="">Sujet de votre demande</Label>

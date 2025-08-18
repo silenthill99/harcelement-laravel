@@ -1,9 +1,8 @@
 import React, {FormEvent, useState} from 'react';
 import PageStructure from "@/Components/PageStructure";
-import { SharedData} from "@/types";
 import {Input} from "@/Components/ui/input";
 import {Label} from "@/Components/ui/label";
-import {useForm, usePage} from "@inertiajs/react";
+import {useForm} from "@inertiajs/react";
 import {Button} from "@/Components/ui/button";
 
 type FormProps = {
@@ -12,9 +11,6 @@ type FormProps = {
 }
 
 const AddVideo = () => {
-
-    const {auth} = usePage<SharedData>().props
-
     const {data, setData, post, reset, errors} = useForm<Required<FormProps>>({
         title: '',
         link: '',
@@ -41,7 +37,7 @@ const AddVideo = () => {
     }
 
     return (
-        <PageStructure auth={auth.user} title={"Add video"} className={"container mx-auto p-5 md:p-4"}>
+        <PageStructure title={"Add video"} className={"container mx-auto p-5 md:p-4"}>
             <form method={"POST"} onSubmit={handleSubmit}>
                 <Label htmlFor={"title"}>Titre de la vidéo</Label>
                 <Input
