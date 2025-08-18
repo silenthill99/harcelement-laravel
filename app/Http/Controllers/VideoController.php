@@ -10,7 +10,7 @@ use Inertia\Inertia;
 class VideoController extends Controller
 {
     public function index() {
-        $videos = Video::all();
+        $videos = Video::paginate(20);
 
         $role = null;
 

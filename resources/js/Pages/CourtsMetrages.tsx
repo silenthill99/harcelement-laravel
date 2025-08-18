@@ -17,9 +17,21 @@ type RoleProps = {
     name: string;
 }
 
+type Props = {
+    videos: {
+        data: VideoProps[];
+        links: {
+            url: string;
+            active: boolean;
+            label: string;
+        }[]
+    }
+    role: RoleProps;
+}
+
 const CourtsMetrages = () => {
 
-    const {auth, videos, role} = usePage<SharedData & {videos: VideoProps[], role: RoleProps}>().props
+    const {auth, videos, role} = usePage<SharedData & Props>().props
     return (
         <PageStructure auth={auth.user} title={"Courts métrages"}>
             <div className={"container mx-auto p-5 md:p-4 flex flex-col justify-center gap-5"}>
@@ -35,7 +47,7 @@ const CourtsMetrages = () => {
                     certains
                     d'entre eux finissent mal.</p>
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-5 text-center">
-                    {videos.map((video) => (
+                    {videos.data.map((video) => (
                         <div key={video.id} className={"relative group"}>
                             {auth.user && role.id === 2 && (
                                 <Link href={route("videos.edit", video.id)} className={"hidden absolute top-0 right-25 group-hover:inline"}>
@@ -45,12 +57,26 @@ const CourtsMetrages = () => {
                             <YoutubeVideos id={video.link.replace("https://www.youtube.com/watch?v=", "")} name={video.title} className={"flex flex-col items-center"}/>
                         </div>
                     ))}
-                    {videos.map((video) => (
+                    {videos.data.map((video) => (
                         video.id === 32 && (
                             <p>{new Date(video.created_at).toLocaleString()}</p>
                         )
                     ))}
                 </section>
+                <div>
+                    {videos.links.map((link, id) => {
+                        const isDisabled = link.url === null;
+                        return (
+                            <button
+                                key={id}
+                                onClick={() => router.visit(link.url)}
+                                disabled={isDisabled}
+                                dangerouslySetInnerHTML={{__html: link.label}}
+                                className={`border p-2 ${link.active && "font-bold"} ${isDisabled && "opacity-50"}`}
+                            />
+                        )
+                    })}
+                </div>
                 <a className={"fixed left-5 bottom-5 bg-white border border-gray-400 shadow p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400 cursor-pointer"}
                    onClick={() => {
                        window.scrollTo({top: 0, behavior: "smooth"});
