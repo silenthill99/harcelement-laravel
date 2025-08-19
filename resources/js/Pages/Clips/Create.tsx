@@ -12,6 +12,8 @@ type FormProps = {
 
 const Create = () => {
 
+    // const {can} = usePage<{can: boolean}>().props;
+
     const {data, setData, post, reset, errors} = useForm<Required<FormProps>>({
         title: '',
         link: '',

@@ -5,7 +5,8 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VideoController;
 use App\Models\Message;
-use App\Models\Video;
+    use App\Models\Role;
+    use App\Models\Video;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,11 +30,18 @@ Route::get("/contacts", function () {
     return Inertia::render('Contacts');
 })->name("contacts");
 
-Route::resource('/clips', ClipController::class);
+
+Route::resource('/clips', ClipController::class)->only('create')->middleware(["auth", "can:add-video"]);
+Route::resource('/clips', ClipController::class)->except('create');
+
+//Route::resource('/clips', ClipController::class);
 
 //Route::get('/clips', [ClipController::class, "index"])->name("clips");
 
 Route::get("/courts_metrages", [VideoController::class, 'index'])->name("videos.index");
+
+Route::get('/__mw', fn () => 'ok')->middleware(['auth', 'can:add-video']);
+
 
 Route::get("/bonus", function () {
     return Inertia::render('Bonus');
@@ -63,7 +71,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get("/add", [VideoController::class, 'create'])
-    ->name('videos.create')->middleware(['auth', 'verified']);
+    ->name('videos.create')->middleware(['auth', 'verified', 'can:add-video']);
 Route::post("/add", [VideoController::class, "store"])->name('videos.store');
 
 Route::get("/update/{id}", [VideoController::class, "edit"])->name('videos.edit');

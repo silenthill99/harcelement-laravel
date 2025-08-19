@@ -17,11 +17,11 @@ type RoleProps = {
 }
 
 const QuelquesClips = () => {
-    const {auth, clips, role} = usePage<SharedData & { clips: ClipProps[], role: RoleProps }>().props;
+    const {auth, clips, role, can} = usePage<SharedData & { clips: ClipProps[], role: RoleProps, can: boolean }>().props;
     return (
         <PageStructure title={"Quelques clips"}
                        className={"container mx-auto my-8"}>
-            {auth.user && role.id === 2 && (
+            {can && (
                 <Button
                     className={"w-min"}
                     onClick={() => router.visit(route('clips.create'))}

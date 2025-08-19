@@ -8,7 +8,6 @@ import {route} from "ziggy-js";
 const Header = () => {
     const {auth} = usePage<SharedData>().props;
     const isActive = (link: string) => {
-        console.log(link)
         return (
             `bg-red-500 text-white p-1 duration-300 hover:px-5 hover:bg-orange-500 hover:rounded-full ${route().current(link) && "underline"}`
         )
