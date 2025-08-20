@@ -34,7 +34,7 @@ class ClipController extends Controller
 
         $data = $request->validate([
             'title' => 'required|string|max:255',
-            'link' => 'required|string',
+            'link' => ['required','url','regex:/^(https:\/\/(www\.)?youtube\.com\/watch\?v=[A-Za-z0-9_-]{11}|https:\/\/youtu\.be\/[A-Za-z0-9_-]{11})$/'],
         ]);
 
         Clip::create($data);
