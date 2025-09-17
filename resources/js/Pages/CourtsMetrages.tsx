@@ -1,9 +1,9 @@
 import React from 'react';
-import {SharedData} from "@/types";
 import {YoutubeVideos} from "@/Components/YoutubeVideos";
 import PageStructure from "@/Components/PageStructure";
 import {Link, router, usePage} from "@inertiajs/react";
 import {Button} from "@/Components/ui/button";
+import {SharedData} from "@/types";
 
 type VideoProps = {
     id: number;
@@ -19,19 +19,19 @@ type RoleProps = {
 
 type Props = {
     videos: {
-        data: VideoProps[];
+        data: VideoProps[],
         links: {
             url: string;
-            active: boolean;
             label: string;
+            active: boolean;
         }[]
     }
-    role: RoleProps;
 }
 
 const CourtsMetrages = () => {
 
-    const {auth, videos, role} = usePage<SharedData & Props>().props
+    const {auth, videos, role} = usePage<SharedData & {role: RoleProps} & Props>().props
+
     return (
         <PageStructure title={"Courts métrages"}>
             <div className={"container mx-auto p-5 md:p-4 flex flex-col justify-center gap-5"}>
@@ -63,25 +63,15 @@ const CourtsMetrages = () => {
                         )
                     ))}
                 </section>
-                <div>
-                    {videos.links.map((link, id) => {
-                        const isDisabled = link.url === null;
-                        return (
-                            <button
-                                key={id}
-                                onClick={() => router.visit(link.url)}
-                                disabled={isDisabled}
-                                dangerouslySetInnerHTML={{__html: link.label}}
-                                className={`border p-2 ${link.active && "font-bold"} ${isDisabled && "opacity-50"}`}
-                            />
-                        )
-                    })}
-                </div>
+
                 <a className={"fixed left-5 bottom-5 bg-white border border-gray-400 shadow p-2 rounded-lg hover:bg-gray-300 active:bg-gray-400 cursor-pointer"}
                    onClick={() => {
                        window.scrollTo({top: 0, behavior: "smooth"});
                    }}>Haut de page</a>
             </div>
+            {videos.links.map((link, index) => (
+                <Link key={index} href={link.url} dangerouslySetInnerHTML={{__html: link.label}}/>
+            ))}
             <section className="pb-10 bg-fond p-4">
                 <div className={"container mx-auto"}>
                     <h2 className={"text-purple-300 font-bold text-center m-10"}>Quelques reportages</h2>
