@@ -12,6 +12,7 @@ const Bonus = () => {
                     il reste très intéressant car il démontre bien le danger que peuvent représenter les réseaux
                     sociaux.</p>
                 <DeezerMusics type="track" id="913858" className={"w-1/2 md:w-auto mx-auto"}/>
+                <YoutubeVideos id={"4zvdSb2dnRI"} name={"Témoignage de Gaspard G suite à son harcèlement"} className={"m-5 md:m-0 flex flex-col items-center"}/>
             </section>
             <h1 className={"text-center py-5"}>Quelques livres</h1>
             <div className={"border-y-2 border-black"}>
