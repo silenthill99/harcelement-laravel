@@ -1,3 +1,24 @@
+export interface PaginatedProps<T> {
+    data: T[],
+    links: {
+        label: string;
+        url: string;
+        active: boolean;
+    }[]
+}
+
+export interface Video {
+    id: number;
+    title: string;
+    link: string;
+    created_at: string;
+}
+
+export interface Role {
+    id: number;
+    name: string;
+}
+
 export interface User {
     id: number;
     name: string;
