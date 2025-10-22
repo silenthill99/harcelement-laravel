@@ -10,7 +10,7 @@ use Inertia\Inertia;
 class VideoController extends Controller
 {
     public function index() {
-        $videos = Video::paginate(20);
+        $videoList = Video::paginate(20);
 
         $role = null;
 
@@ -18,7 +18,7 @@ class VideoController extends Controller
             $role = Auth::user()->roles()->first();
         }
 
-        return Inertia::render('CourtsMetrages', ["videos" => $videos, 'role' => $role]);
+        return Inertia::render('CourtsMetrages', ["videoList" => $videoList, 'role' => $role]);
     }
 
    public function create() {

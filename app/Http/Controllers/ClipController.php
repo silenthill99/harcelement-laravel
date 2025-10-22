@@ -15,7 +15,7 @@ class ClipController extends Controller
 {
     public function index()
     {
-        $clip = Clip::all();
+        $clipList = Clip::all();
 
         $role = null;
         $can = false;
@@ -26,7 +26,7 @@ class ClipController extends Controller
             $can  = $user->can('add-video');   // la Gate n'attend QUE $user
         }
 
-        return Inertia::render('Quelques clips', ['clips' => $clip, 'role' => $role, 'can' => $can]);
+        return Inertia::render('Quelques clips', ['clipList' => $clipList, 'role' => $role, 'can' => $can]);
     }
 
     public function store(Request $request)

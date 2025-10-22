@@ -5,6 +5,7 @@ import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import {Input} from "@/Components/ui/input";
+import {login, register} from "@/routes";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -17,7 +18,7 @@ export default function Register() {
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        post(route('register'), {
+        post(register().url, {
             onFinish: () => reset('password', 'password_confirmation'),
         });
     };
@@ -104,7 +105,7 @@ export default function Register() {
 
                 <div className="mt-4 flex items-center justify-end">
                     <Link
-                        href={route('login')}
+                        href={login()}
                         className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
                         Already registered?

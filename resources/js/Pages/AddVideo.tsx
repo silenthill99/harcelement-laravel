@@ -4,6 +4,7 @@ import {Input} from "@/Components/ui/input";
 import {Label} from "@/Components/ui/label";
 import {useForm} from "@inertiajs/react";
 import {Button} from "@/Components/ui/button";
+import videos from "@/routes/videos";
 
 type FormProps = {
     title: string,
@@ -31,7 +32,7 @@ const AddVideo = () => {
 
         setLocalError(null)
 
-        post(route('videos.store'), {
+        post(videos.store().url, {
             onFinish: () => reset()
         })
     }

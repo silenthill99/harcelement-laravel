@@ -5,6 +5,7 @@ import {Input} from "@/Components/ui/input";
 import {Button} from "@/Components/ui/button";
 import {useForm, usePage} from "@inertiajs/react";
 import {SharedData} from "@/types";
+import videos from "@/routes/videos";
 
 type FormProps = {
     id: number;
@@ -24,7 +25,7 @@ const Update = () => {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        post(route('videos.update', video.id), {
+        post(videos.update({id: video.id}).url, {
             onFinish: () => reset()
         })
     }

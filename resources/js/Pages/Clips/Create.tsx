@@ -4,6 +4,7 @@ import {useForm} from "@inertiajs/react";
 import {Input} from "@/Components/ui/input";
 import {Label} from "@/Components/ui/label";
 import {Button} from "@/Components/ui/button";
+import clips from "@/routes/clips";
 
 type FormProps = {
     title: string;
@@ -21,7 +22,7 @@ const Create = () => {
 
     function onSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        post(route('clips.store'), {
+        post(clips.store().url, {
             onSuccess: () => reset()
         })
     }
@@ -37,6 +38,9 @@ const Create = () => {
                     id={"title"}
                     className={"mb-6"}
                 />
+                {errors.title && (
+                    <p className="text-red-500">{errors.title}</p>
+                )}
                 <Label htmlFor={"link"}>Lien</Label>
                 <Input
                     value={data.link}
@@ -45,6 +49,9 @@ const Create = () => {
                     id={"link"}
                     className={"mb-6"}
                 />
+                {errors.link && (
+                    <p className="text-red-500">{errors.link}</p>
+                )}
                 <Button>Envoyer</Button>
             </form>
         </PageStructure>

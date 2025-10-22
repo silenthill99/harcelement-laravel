@@ -4,6 +4,7 @@ import {useForm} from "@inertiajs/react";
 import {Textarea} from "@/Components/ui/textarea";
 import {Input} from "@/Components/ui/input";
 import {Label} from "@/Components/ui/label";
+import {contacts} from "@/routes";
 
 type ContactForm = {
     subject: string;
@@ -20,7 +21,7 @@ const Contacts = () => {
 
     function submit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        post(route("contacts"), {
+        post(contacts().url, {
             onFinish: () => reset()
         })
     }

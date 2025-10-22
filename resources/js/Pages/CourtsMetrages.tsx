@@ -4,6 +4,7 @@ import PageStructure from "@/Components/PageStructure";
 import {Link, router, usePage} from "@inertiajs/react";
 import {Button} from "@/Components/ui/button";
 import {SharedData} from "@/types";
+import videos from "@/routes/videos";
 
 type VideoProps = {
     id: number;
@@ -18,7 +19,7 @@ type RoleProps = {
 }
 
 type Props = {
-    videos: {
+    videoList: {
         data: VideoProps[],
         links: {
             url: string;
@@ -30,7 +31,7 @@ type Props = {
 
 const CourtsMetrages = () => {
 
-    const {auth, videos, role} = usePage<SharedData & {role: RoleProps} & Props>().props
+    const {auth, videoList, role} = usePage<SharedData & {role: RoleProps} & Props>().props
 
     return (
         <PageStructure title={"Courts métrages"}>
@@ -38,7 +39,7 @@ const CourtsMetrages = () => {
                 <h1 className="text-center p-10">Quelques courts métrages</h1>
                 {auth.user && role.id === 2 && (
                     <Button className={"self-center cursor-pointer"} onClick={() => {
-                        router.visit(route('videos.create'))
+                        router.visit(videos.create())
                     }}>Ajouter une vidéo</Button>
                 )}
                 <p className="text-center">Sur cette page, vous y trouverez toute une floppée de courts métrages
@@ -47,17 +48,17 @@ const CourtsMetrages = () => {
                     certains
                     d'entre eux finissent mal.</p>
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-5 text-center">
-                    {videos.data.map((video) => (
+                    {videoList.data.map((video) => (
                         <div key={video.id} className={"relative group"}>
                             {auth.user && role.id === 2 && (
-                                <Link href={route("videos.edit", video.id)} className={"hidden absolute top-0 right-25 group-hover:inline"}>
+                                <Link href={videos.edit({id: video.id})} className={"hidden absolute top-0 right-25 group-hover:inline"}>
                                     <img src="/images/crayon.svg" alt="Modifier" width={20} height={20}/>
                                 </Link>
                             )}
                             <YoutubeVideos id={video.link.replace("https://www.youtube.com/watch?v=", "")} name={video.title} className={"flex flex-col items-center"}/>
                         </div>
                     ))}
-                    {videos.data.map((video) => (
+                    {videoList.data.map((video) => (
                         video.id === 32 && (
                             <p>{new Date(video.created_at).toLocaleString()}</p>
                         )
@@ -69,8 +70,12 @@ const CourtsMetrages = () => {
                        window.scrollTo({top: 0, behavior: "smooth"});
                    }}>Haut de page</a>
             </div>
-            {videos.links.map((link, index) => (
-                <Link key={index} href={link.url} dangerouslySetInnerHTML={{__html: link.label}}/>
+            {videoList.links.map((link, index) => (
+                link.url ? (
+                    <Link key={index} href={link.url} dangerouslySetInnerHTML={{__html: link.label}}/>
+                ) : (
+                    <span key={index} dangerouslySetInnerHTML={{__html: link.label}}/>
+                )
             ))}
             <section className="pb-10 bg-fond p-4">
                 <div className={"container mx-auto"}>

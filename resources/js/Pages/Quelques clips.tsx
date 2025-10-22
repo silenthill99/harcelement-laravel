@@ -1,9 +1,9 @@
 import React from 'react';
 import {YoutubeVideos} from "@/Components/YoutubeVideos";
-import {SharedData} from "@/types";
 import PageStructure from "@/Components/PageStructure";
 import {router, usePage} from "@inertiajs/react";
 import {Button} from "@/Components/ui/button";
+import clips from "@/routes/clips";
 
 type ClipProps = {
     id: number;
@@ -11,26 +11,21 @@ type ClipProps = {
     link: string;
     created_at: string
 }
-
-type RoleProps = {
-    id: number;
-}
-
 const QuelquesClips = () => {
-    const {auth, clips, role, can} = usePage<SharedData & { clips: ClipProps[], role: RoleProps, can: boolean }>().props;
+    const {clipList, can} = usePage<{ clipList: ClipProps[], can: boolean }>().props;
     return (
         <PageStructure title={"Quelques clips"}
                        className={"container mx-auto my-8"}>
             {can && (
                 <Button
                     className={"w-min"}
-                    onClick={() => router.visit(route('clips.create'))}
+                    onClick={() => router.visit(clips.create())}
                 >
                     Ajouter un clip
                 </Button>
             )}
             <div className={"grid grid-cols-1 lg:grid-cols-2 gap-5"}>
-                {clips.map(clip => (
+                {clipList.map(clip => (
                     <YoutubeVideos key={clip.id} id={clip.link.replace("https://www.youtube.com/watch?v=", "")}
                                    name={clip.title} className={"mx-auto text-center"}/>
                 ))}
