@@ -1,0 +1,40 @@
+import React from 'react';
+import {SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar} from "@/Components/ui/sidebar";
+import {DropdownMenu, DropdownMenuContent, DropdownMenuTrigger} from "@/Components/ui/dropdown-menu";
+import {ChevronsUpDown} from "lucide-react";
+import {usePage} from "@inertiajs/react";
+import {SharedData} from "@/types";
+import {useIsMobile} from "@/hooks/use-mobile";
+import UserInfo from "@/Components/UserInfo";
+import UserMenuContent from "@/Components/UserMenuContent";
+
+
+
+const NavUser = () => {
+    const { auth } = usePage<SharedData>().props;
+    const { state } = useSidebar();
+    const isMobile = useIsMobile();
+    return (
+        <SidebarMenu>
+            <SidebarMenuItem>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <SidebarMenuButton size="lg" className="text-sidebar-accent-foreground data-[state=open]:bg-sidebar-accent group">
+                            <UserInfo user={auth.user} />
+                            <ChevronsUpDown className="ml-auto size-4" />
+                        </SidebarMenuButton>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent
+                        className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+                        align="end"
+                        side={isMobile ? 'bottom' : state === 'collapsed' ? 'left' : 'bottom'}
+                    >
+                        <UserMenuContent user={auth.user} />
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            </SidebarMenuItem>
+        </SidebarMenu>
+    );
+};
+
+export default NavUser;

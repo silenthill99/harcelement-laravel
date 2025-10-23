@@ -19,6 +19,23 @@ export interface Role {
     name: string;
 }
 
+export interface BreadcrumbItem {
+    title: string;
+    href: string;
+}
+
+export interface NavItem {
+    title: string;
+    href: string;
+    icon?: LucideIcon | null;
+    isActive?: boolean;
+}
+
+export interface BreadcrumbItem {
+    title: string;
+    href: string;
+}
+
 export interface User {
     id: number;
     name: string;

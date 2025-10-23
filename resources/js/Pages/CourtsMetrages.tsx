@@ -47,7 +47,9 @@ const CourtsMetrages = () => {
                        window.scrollTo({top: 0, behavior: "smooth"});
                    }}>Haut de page</a>
             </div>
-            <PaginatedCollection props={videoList}/>
+            <div className={"py-5 co"}>
+                <PaginatedCollection pages={videoList}/>
+            </div>
             <section className="pb-10 bg-fond p-4">
                 <div className={"container mx-auto"}>
                     <h2 className={"text-purple-300 font-bold text-center m-10"}>Quelques reportages</h2>

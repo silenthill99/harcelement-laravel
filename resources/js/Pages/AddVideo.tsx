@@ -1,10 +1,12 @@
 import React, {FormEvent, useState} from 'react';
 import PageStructure from "@/Components/PageStructure";
-import {Input} from "@/Components/ui/input";
+// import {Input} from "@/Components/ui/input";
 import {Label} from "@/Components/ui/label";
 import {useForm} from "@inertiajs/react";
-import {Button} from "@/Components/ui/button";
+// import {Button} from "@/Components/ui/button";
 import videos from "@/routes/videos";
+import {Input} from "@/Components/ui/input";
+import {Button} from "@/Components/ui/button";
 
 type FormProps = {
     title: string,
