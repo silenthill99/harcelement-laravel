@@ -7,6 +7,32 @@ import {accueil, bonus, contacts, dashboard, films, forum, login, register} from
 import clips from "@/routes/clips";
 import videos from "@/routes/videos";
 
+const navItemsButtons = [
+    {
+        name: "Accueil",
+        link: accueil
+    },
+    {
+        name: "Quelques clips",
+        link: clips.index
+    },
+    {
+        name: "Courts métrages",
+        link: videos.index
+    },
+    {
+        name: "Bonus",
+        link: bonus
+    },
+    {
+        name: "Quelques films",
+        link: films
+    },
+    {
+        name: "Nous contacter",
+        link: contacts
+    }
+]
 
 const Header = () => {
     const {auth} = usePage<SharedData>().props;
@@ -70,13 +96,9 @@ const Header = () => {
             {/*Menu PC*/}
             <nav className={"hidden lg:flex justify-between items-center container mx-auto p-2"}>
                 <div className={"flex gap-2"}>
-                    <Link href={accueil()} className={style(accueil.definition.url)}>Accueil</Link>
-                    <Link href={clips.index()} className={style(clips.index.definition.url)}>Quelques clips</Link>
-                    <Link href={videos.index()} className={style(videos.index.definition.url)}>Courts
-                        métrages</Link>
-                    <Link href={bonus()} className={style(bonus.definition.url)}>Bonus</Link>
-                    <Link href={films()} className={style(films.definition.url)}>Quelques films</Link>
-                    <Link href={contacts()} className={style(contacts.definition.url)}>Nous contacter </Link>
+                    {navItemsButtons.map((link, index) => (
+                        <Link key={index} href={link.link()} className={cn(`bg-red-500 text-white p-1 duration-300 hover:px-5 hover:bg-orange-500 hover:rounded-full`, isActive(link.link().url) && "underline")}>{link.name}</Link>
+                    ))}
                     <Link href={forum()} className={style(forum.definition.url)}>Forum</Link>
                 </div>
                 {auth.user ?
