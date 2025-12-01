@@ -54,4 +54,7 @@ export interface SharedData {
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
     [key: string]: unknown;
+    flash?: {
+        success?: string;
+    }
 }

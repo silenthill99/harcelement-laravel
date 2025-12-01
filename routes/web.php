@@ -4,11 +4,7 @@ use App\Http\Controllers\ClipController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VideoController;
-use App\Models\Message;
-    use App\Models\Role;
-    use App\Models\Video;
 use Illuminate\Foundation\Application;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -25,11 +21,9 @@ Route::get("/forum", function() {
     return Inertia::render('Forum');
 })->name("forum");
 
-Route::get("/contacts", function () {
+Route::get("/contacts", [MessageController::class, "create"])->name("contacts");
 
-    return Inertia::render('Contacts');
-})->name("contacts");
-
+Route::post("/contacts", [MessageController::class, "store"])->name("contacts.store");
 
 Route::resource('/clips', ClipController::class)->only('create')->middleware(["auth", "can:add-video"]);
 Route::resource('/clips', ClipController::class)->except('create');
@@ -42,7 +36,6 @@ Route::get("/courts_metrages", [VideoController::class, 'index'])->name("videos.
 
 Route::get('/__mw', fn () => 'ok')->middleware(['auth', 'can:add-video']);
 
-
 Route::get("/bonus", function () {
     return Inertia::render('Bonus');
 })->name("bonus");
@@ -54,15 +47,6 @@ Route::get("/quelques_films", function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::post("/contacts", function (Request $request) {
-    $message = Message::create([
-        "subject" => $request->subject,
-        "email" => $request->email,
-        "message" => $request->message
-    ]);
-    return Inertia::render('Contacts');
-});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
