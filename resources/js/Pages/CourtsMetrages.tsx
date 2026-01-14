@@ -46,9 +46,7 @@ const CourtsMetrages = () => {
                    onClick={() => {
                        window.scrollTo({top: 0, behavior: "smooth"});
                    }}>Haut de page</a>
-            </div>
-            <div className={"py-5 co"}>
-                <PaginatedCollection pages={videoList}/>
+                <div><PaginatedCollection pages={videoList}/></div>
             </div>
             <section className="pb-10 bg-fond p-4">
                 <div className={"container mx-auto"}>
