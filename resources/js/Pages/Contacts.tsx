@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PageStructure from "@/Components/PageStructure";
 import {Form, usePage} from "@inertiajs/react";
 import {Textarea} from "@/Components/ui/textarea";
@@ -12,7 +12,9 @@ import {Toaster} from "@/Components/ui/sonner";
 
 const Contacts = () => {
 
-    const {flash} = usePage<SharedData>().props
+    const {auth, flash} = usePage<SharedData>().props
+
+    const [mail, setMail] = useState<string>()
 
     useEffect(function () {
         flash?.success && (
@@ -41,16 +43,35 @@ const Contacts = () => {
                                 <ErrorMessage message={errors.subject}/>
                             )}
                         </div>
-                        <Input
-                            type="email"
-                            placeholder="Votre email"
-                            name="email"
-                        />
-                        <Textarea
-                            placeholder="Votre message"
-                            className="resize-none block border h-100"
-                            name={"message"}
-                        ></Textarea>
+                        <div>
+                            <Label htmlFor={"email"}>Votre adresse mail</Label>
+                            <Input
+                                type="email"
+                                placeholder="Votre email"
+                                name="email"
+                                id={"email"}
+                                value={auth.user?.email || mail}
+                                onChange={(e) => setMail(e.target.value)}
+                                readOnly={!!auth.user}
+                                aria-invalid={!!errors.email}
+                            />
+                            {errors.email && (
+                                <ErrorMessage message={errors.email}/>
+                            )}
+                        </div>
+                        <div>
+                            <Label htmlFor={"message"}>Votre message</Label>
+                            <Textarea
+                                placeholder="Votre message"
+                                className="resize-none block border h-100"
+                                name={"message"}
+                                id={"message"}
+                                aria-invalid={!!errors.messaged}
+                            ></Textarea>
+                            {errors.message && (
+                                <ErrorMessage message={errors.message}/>
+                            )}
+                        </div>
                         <Input type="submit" value="Envoyer"
                                className="bg-blue-700 text-white m-0 duration-300 cursor-pointer hover:bg-gray-500 w-min"/>
                     </div>

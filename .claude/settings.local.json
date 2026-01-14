@@ -1,6 +1,13 @@
 {
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:stackoverflow.com)",
+      "WebSearch",
+      "WebFetch(domain:masteringlaravel.io)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "laravel-boost"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }
