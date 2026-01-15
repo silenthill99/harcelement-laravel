@@ -5,6 +5,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VideoController;
 use App\Mail\MessageSendMail;
+use App\Models\Message;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -65,5 +66,10 @@ Route::post("/update/{id}", [VideoController::class, "update"])->name('videos.up
 //Route::get("/test", function () {
 //    return new MessageSendMail();
 //})->name("mail.message-send-mail");
+
+Route::get("/test", function () {
+    $msg = new Message();
+    return new MessageSendMail($msg);
+});
 
 require __DIR__.'/auth.php';

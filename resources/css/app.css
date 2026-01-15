@@ -4,6 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @layer base {
+    button {
+        @apply cursor-pointer;
+    }
     h1 {
         font-size: 1.875rem;
         line-height: calc(2.25 / 1.875);
