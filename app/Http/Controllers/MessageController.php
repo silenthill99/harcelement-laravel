@@ -21,7 +21,7 @@ class MessageController extends Controller
         $data = $request->validated();
         $msg = Message::create($data);
 
-        Mail::to("floriangraziani095@gmail.com")->send(
+        Mail::to("florian.graziani@sfr.fr")->send(
             new MessageSendMail($msg)
         );
 
