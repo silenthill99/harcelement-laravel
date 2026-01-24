@@ -1,72 +1,40 @@
-import React, {FormEvent, useState} from 'react';
+import React from 'react';
 import PageStructure from "@/Components/PageStructure";
-// import {Input} from "@/Components/ui/input";
 import {Label} from "@/Components/ui/label";
-import {useForm} from "@inertiajs/react";
-// import {Button} from "@/Components/ui/button";
-import videos from "@/routes/videos";
+import {Form} from "@inertiajs/react";
 import {Input} from "@/Components/ui/input";
 import {Button} from "@/Components/ui/button";
-
-type FormProps = {
-    title: string,
-    link: string
-}
+import VideoController from "@/actions/App/Http/Controllers/VideoController";
 
 const AddVideo = () => {
-    const {data, setData, post, reset, errors} = useForm<Required<FormProps>>({
-        title: '',
-        link: '',
-    });
-
-    const [localError, setLocalError] = useState<string | null>(null);
-
-    const isValidUrl = (url: string) => {
-        return url.startsWith("https://www.youtube.com") || url.startsWith("www.youtube.com") || url.startsWith("youtube.com");
-    }
-
-    function handleSubmit(e: FormEvent) {
-        e.preventDefault();
-        if (!isValidUrl(data.link)) {
-            setLocalError("La vidéo doit être sur youtube !");
-            return;
-        }
-
-        setLocalError(null)
-
-        post(videos.store().url, {
-            onFinish: () => reset()
-        })
-    }
 
     return (
         <PageStructure title={"Add video"} className={"container mx-auto p-5 md:p-4"}>
-            <form method={"POST"} onSubmit={handleSubmit}>
-                <Label htmlFor={"title"}>Titre de la vidéo</Label>
-                <Input
-                    placeholder={"Titre de l'article"}
-                    name="title"
-                    id="title"
-                    value={data.title}
-                    onChange={(e) => {setData("title", e.target.value)}}
-                    required
-                />
-                {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
-                <br/>
-                <Label htmlFor={"link"}>Lien de la vidéo</Label>
-                <Input
-                    placeholder={"Lien Youtube"}
-                    name="link"
-                    id="link"
-                    value={data.link}
-                    onChange={(e) => {setData('link', e.target.value)}}
-                    required
-                />
-                {localError && <p className="text-red-500 text-sm">{localError}</p>}
-                {errors.link && <p className="text-red-500 text-sm">{errors.link}</p>}
-                <br/>
-                <Button type={"submit"} className={"cursor-pointer"}>Valider</Button>
-            </form>
+            <Form {...VideoController.store.form()}>
+                {({errors}) => (
+                    <div  className="space-y-4">
+                        <div>
+                            <Label htmlFor={"title"}>Titre de la vidéo</Label>
+                            <Input
+                                placeholder={"Titre de l'article"}
+                                name="title"
+                                id="title"
+                            />
+                            {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
+                        </div>
+                        <div>
+                            <Label htmlFor={"link"}>Lien de la vidéo</Label>
+                            <Input
+                                placeholder={"Lien Youtube"}
+                                name="link"
+                                id="link"
+                            />
+                            {errors.link && <p className="text-red-500 text-sm">{errors.link}</p>}
+                        </div>
+                        <Button type={"submit"} className={"cursor-pointer"}>Valider</Button>
+                    </div>
+                )}
+            </Form>
         </PageStructure>
     );
 };
