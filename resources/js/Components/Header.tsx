@@ -59,14 +59,14 @@ const Header = () => {
             {/* Menu mobile overlay - en dehors du header pour éviter les problèmes de z-index */}
             <div
                 className={cn(
-                    "lg:hidden fixed inset-0 z-[100] transition-all duration-300",
+                    "lg:hidden fixed inset-0 z-100 transition-all duration-300",
                     showMenu ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
                 )}
             >
                 <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowMenu(false)} />
                 <nav
                     className={cn(
-                        "absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-gradient-to-br from-red-600 to-red-700",
+                        "absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-linear-to-br from-red-900 to-red-950",
                         "transform transition-transform duration-300 ease-out",
                         "flex flex-col shadow-2xl",
                         showMenu ? "translate-x-0" : "translate-x-full"
@@ -152,7 +152,7 @@ const Header = () => {
             >
                 {/* Menu mobile toggle */}
                 <div className="lg:hidden flex items-center justify-between px-4 h-16">
-                    <Link href={accueil()} className="text-xl font-bold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
+                    <Link href={accueil()} className="text-xl font-bold bg-linear-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
                         Harcèlement
                     </Link>
                     <button
@@ -170,7 +170,7 @@ const Header = () => {
                 {/* Menu PC */}
             <nav className="hidden lg:flex items-center justify-between container mx-auto px-4 py-3">
                 <div className="flex items-center gap-8">
-                    <Link href={accueil()} className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
+                    <Link href={accueil()} className="text-2xl font-bold bg-linear-to-r from-red-600 to-orange-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
                         Harcèlement
                     </Link>
 
@@ -211,7 +211,7 @@ const Header = () => {
                     {auth.user ? (
                         <Link
                             href={dashboard()}
-                            className="px-4 py-2 rounded-lg bg-gradient-to-r from-red-600 to-orange-500 text-white font-medium text-sm hover:shadow-lg hover:shadow-red-500/25 transition-all duration-200 hover:-translate-y-0.5"
+                            className="px-4 py-2 rounded-lg bg-linear-to-r from-red-600 to-orange-500 text-white font-medium text-sm hover:shadow-lg hover:shadow-red-500/25 transition-all duration-200 hover:-translate-y-0.5"
                         >
                             Tableau de bord
                         </Link>
@@ -225,7 +225,7 @@ const Header = () => {
                             </Link>
                             <Link
                                 href={register()}
-                                className="px-4 py-2 rounded-lg bg-gradient-to-r from-red-600 to-orange-500 text-white font-medium text-sm hover:shadow-lg hover:shadow-red-500/25 transition-all duration-200 hover:-translate-y-0.5"
+                                className="px-4 py-2 rounded-lg bg-linear-to-r from-red-600 to-orange-500 text-white font-medium text-sm hover:shadow-lg hover:shadow-red-500/25 transition-all duration-200 hover:-translate-y-0.5"
                             >
                                 Créer un compte
                             </Link>
