@@ -11,9 +11,9 @@ import {router} from "@inertiajs/react";
 const PaginatedCollection = ({pages, ...props}: Props & ComponentPropsWithoutRef<typeof Button>) => {
     return (
         <div className={"flex items-center justify-between"}>
-            <p>Affichage des résultats <strong>{pages.from}</strong> à <strong>{pages.to}</strong> sur <strong>{pages.total}</strong></p>
+            <p>Affichage des résultats <strong>{pages.meta.from}</strong> à <strong>{pages.meta.to}</strong> sur <strong>{pages.meta.total}</strong></p>
             <div>
-                {pages.links.map((link, index) => (
+                {pages.meta.links.map((link, index) => (
                     <Button
                         key={index}
                         onClick={() => {router.visit(link.url || "")}}

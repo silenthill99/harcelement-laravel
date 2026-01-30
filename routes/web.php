@@ -34,8 +34,6 @@ Route::resource('/clips', ClipController::class)->except('create');
 
 //Route::get('/clips', [ClipController::class, "index"])->name("clips");
 
-Route::get("/courts_metrages", [VideoController::class, 'index'])->name("videos.index");
-
 Route::get('/__mw', fn () => 'ok')->middleware(['auth', 'can:add-video']);
 
 Route::get("/bonus", function () {
@@ -54,14 +52,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource("videos", VideoController::class);
 });
 
-Route::get("/add", [VideoController::class, 'create'])
-    ->name('videos.create')->middleware(['auth', 'verified', 'can:add-video']);
-Route::post("/add", [VideoController::class, "store"])->name('videos.store');
+//Route::get("/add", [VideoController::class, 'create'])
+//    ->name('videos.create')->middleware(['auth', 'verified', 'can:add-video']);
+//Route::post("/add", [VideoController::class, "store"])->middleware(['auth', 'verified'])->name('videos.store');
+//
+//Route::get("/update/{id}", [VideoController::class, "edit"])->middleware(['auth', 'verified'])->name('videos.edit');
+//Route::post("/update/{id}", [VideoController::class, "update"])->middleware(['auth', 'verified'])->name('videos.update');
 
-Route::get("/update/{id}", [VideoController::class, "edit"])->name('videos.edit');
-Route::post("/update/{id}", [VideoController::class, "update"])->name('videos.update');
+
 
 //Route::get("/test", function () {
 //    return new MessageSendMail();

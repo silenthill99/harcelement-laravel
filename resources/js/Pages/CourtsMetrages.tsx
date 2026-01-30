@@ -3,7 +3,7 @@ import { YoutubeVideos } from "@/Components/YoutubeVideos";
 import PageStructure from "@/Components/PageStructure";
 import { Link, router, usePage } from "@inertiajs/react";
 import { Button } from "@/Components/ui/button";
-import { PaginatedProps, Role, SharedData, Video } from "@/types";
+import { PaginatedProps, SharedData, Video } from "@/types";
 import videos from "@/routes/videos";
 import PaginatedCollection from "@/Components/PaginatedCollection";
 
@@ -12,7 +12,7 @@ type Props = {
 }
 
 const CourtsMetrages = () => {
-    const { auth, videoList, role } = usePage<SharedData & { role: Role } & Props>().props;
+    const { auth, videoList, can_create } = usePage<SharedData & { can_create: boolean } & Props>().props;
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -21,7 +21,7 @@ const CourtsMetrages = () => {
     return (
         <PageStructure title="Courts métrages">
             {/* Hero Section */}
-            <section className="bg-gradient-to-br from-gray-50 to-gray-100 py-12 md:py-16">
+            <section className="bg-linear-to-br from-gray-50 to-gray-100 py-12 md:py-16">
                 <div className="container mx-auto px-4">
                     <div className="max-w-3xl mx-auto text-center">
                         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -31,9 +31,9 @@ const CourtsMetrages = () => {
                             Sur cette page, vous trouverez une sélection de courts métrages évoquant le harcèlement scolaire.
                             En raison de la sensibilité du sujet, certains contenus peuvent être difficiles à regarder.
                         </p>
-                        {auth.user && role.id === 2 && (
+                        {auth.user && can_create && (
                             <Button
-                                className="bg-gradient-to-r from-red-600 to-orange-500 hover:from-red-700 hover:to-orange-600 text-white px-6 py-2 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer"
+                                className="bg-linear-to-r from-red-600 to-orange-500 hover:from-red-700 hover:to-orange-600 text-white px-6 py-2 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer"
                                 onClick={() => router.visit(videos.create())}
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
@@ -52,9 +52,9 @@ const CourtsMetrages = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {videoList.data.map((video) => (
                             <div key={video.id} className="relative group">
-                                {auth.user && role.id === 2 && (
+                                {auth.user && can_create && (
                                     <Link
-                                        href={videos.edit({ id: video.id })}
+                                        href={videos.edit({ video: video.id })}
                                         className="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 bg-white/90 hover:bg-white p-2 rounded-full shadow-md transition-all duration-200"
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-700">
@@ -80,7 +80,7 @@ const CourtsMetrages = () => {
             </section>
 
             {/* Reportages Section */}
-            <section className="py-12 bg-gradient-to-r from-red-900 to-red-400">
+            <section className="py-12 bg-linear-to-r from-red-900 to-red-400">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-10">
                         <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">

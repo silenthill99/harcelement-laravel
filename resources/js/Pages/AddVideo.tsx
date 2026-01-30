@@ -16,7 +16,7 @@ const AddVideo = () => {
                         <div>
                             <Label htmlFor={"title"}>Titre de la vidéo</Label>
                             <Input
-                                placeholder={"Titre de l'article"}
+                                placeholder={"Titre de la vidéo"}
                                 name="title"
                                 id="title"
                             />
@@ -31,7 +31,9 @@ const AddVideo = () => {
                             />
                             {errors.link && <p className="text-red-500 text-sm">{errors.link}</p>}
                         </div>
-                        <Button type={"submit"} className={"cursor-pointer"}>Valider</Button>
+                        <div>
+                            <Button type={"submit"} className={"cursor-pointer"}>Valider</Button>
+                        </div>
                     </div>
                 )}
             </Form>

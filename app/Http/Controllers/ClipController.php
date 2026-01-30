@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ClipResource;
 use App\Models\Clip;
 use App\Models\Role;
 use App\Models\User;
@@ -26,7 +27,11 @@ class ClipController extends Controller
             $can  = $user->can('add-video');   // la Gate n'attend QUE $user
         }
 
-        return Inertia::render('Quelques clips', ['clipList' => $clipList, 'role' => $role, 'can' => $can]);
+        return Inertia::render('Quelques clips', [
+            'clipList' => ClipResource::collection($clipList),
+            'role' => $role,
+            'can' => $can
+        ]);
     }
 
     public function store(Request $request)
