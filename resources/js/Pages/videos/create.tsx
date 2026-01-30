@@ -6,7 +6,7 @@ import {Input} from "@/Components/ui/input";
 import {Button} from "@/Components/ui/button";
 import VideoController from "@/actions/App/Http/Controllers/VideoController";
 
-const AddVideo = () => {
+const Create = () => {
 
     return (
         <PageStructure title={"Add video"} className={"container mx-auto p-5 md:p-4"}>
@@ -41,4 +41,4 @@ const AddVideo = () => {
     );
 };
 
-export default AddVideo;
+export default Create;

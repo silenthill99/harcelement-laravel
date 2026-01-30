@@ -30,10 +30,6 @@ Route::post("/contacts", [MessageController::class, "store"])->name("contacts.st
 Route::resource('/clips', ClipController::class)->only('create')->middleware(["auth", "can:add-video"]);
 Route::resource('/clips', ClipController::class)->except('create');
 
-//Route::resource('/clips', ClipController::class);
-
-//Route::get('/clips', [ClipController::class, "index"])->name("clips");
-
 Route::get('/__mw', fn () => 'ok')->middleware(['auth', 'can:add-video']);
 
 Route::get("/bonus", function () {
@@ -53,8 +49,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource("videos", VideoController::class);
+    Route::resource("videos", VideoController::class)->except('show', 'index');
 });
+
+Route::resource("videos", VideoController::class)->only('index');
 
 //Route::get("/add", [VideoController::class, 'create'])
 //    ->name('videos.create')->middleware(['auth', 'verified', 'can:add-video']);

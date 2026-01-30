@@ -11,7 +11,7 @@ type Props = {
     videoList: PaginatedProps<Video>
 }
 
-const CourtsMetrages = () => {
+const Index = () => {
     const { auth, videoList, can_create } = usePage<SharedData & { can_create: boolean } & Props>().props;
 
     const scrollToTop = () => {
@@ -52,7 +52,7 @@ const CourtsMetrages = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {videoList.data.map((video) => (
                             <div key={video.id} className="relative group">
-                                {auth.user && can_create && (
+                                {auth.user && video.can_edit && (
                                     <Link
                                         href={videos.edit({ video: video.id })}
                                         className="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 bg-white/90 hover:bg-white p-2 rounded-full shadow-md transition-all duration-200"
@@ -148,4 +148,4 @@ const CourtsMetrages = () => {
     );
 };
 
-export default CourtsMetrages;
+export default Index;

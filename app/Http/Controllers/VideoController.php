@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreVideoRequest;
+use App\Http\Requests\UpdateVideoRequest;
 use App\Http\Resources\VideoResource;
 use App\Models\Video;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 
@@ -15,9 +16,9 @@ class VideoController extends Controller
     {
         $videoList = Video::paginate(20);
 
-        $can_create = Auth::user()->can('create', Video::class);
+        $can_create = request()->user()?->can('create', Video::class);
 
-        return Inertia::render('CourtsMetrages', [
+        return Inertia::render('videos/index', [
             "videoList" => VideoResource::collection($videoList),
             'can_create' => $can_create
         ]);
@@ -25,15 +26,13 @@ class VideoController extends Controller
 
     public function create()
     {
-        return Inertia::render('AddVideo');
+        Gate::authorize('create', Video::class);
+        return Inertia::render('videos/create');
     }
 
-    public function store(Request $request)
+    public function store(StoreVideoRequest $request)
     {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'link' => 'required|url|regex:/^https:\/\/(www\.)?youtube\.com\/watch\?v=.+$/',
-        ]);
+        $data = $request->validated();
 
         Video::create($data);
         return redirect()->route('videos.index');
@@ -43,19 +42,15 @@ class VideoController extends Controller
     {
         $video = Video::findOrFail($id);
         Gate::authorize('update', $video);
-        return Inertia::render("Update", [
+        return Inertia::render("videos/update", [
             'video' => $video
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateVideoRequest $request, Video $video)
     {
-        $video = Video::findOrFail($id);
         Gate::authorize('update', $video);
-        $values = $request->validate([
-            'title' => 'required|string|max:255',
-            'link' => 'required|url|regex:/^https:\/\/(www\.)?youtube\.com\/watch\?v=.+$/'
-        ]);
+        $values = $request->validated();
 
         $video->update($values);
         return redirect()->route('videos.index');

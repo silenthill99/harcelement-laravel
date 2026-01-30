@@ -18,6 +18,8 @@ class VideoResource extends JsonResource
             'id' => $this->resource->id,
             'title' => $this->resource->title,
             'link' => $this->resource->link,
+            'can_edit' => request()->user()?->can('update', $this->resource),
+            "can_delete" => request()->user()?->can('delete', $this->resource),
         ];
     }
 }

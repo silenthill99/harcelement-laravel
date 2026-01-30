@@ -27,6 +27,7 @@ export interface Video {
     title: string;
     link: string;
     created_at: string;
+    can_edit: boolean;
 }
 
 export interface Role {
