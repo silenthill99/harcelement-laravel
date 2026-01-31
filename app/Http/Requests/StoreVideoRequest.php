@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Video;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -12,7 +13,7 @@ class StoreVideoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return request()->user()->can("create", Video::class);
     }
 
     /**

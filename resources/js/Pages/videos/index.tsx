@@ -6,6 +6,7 @@ import { Button } from "@/Components/ui/button";
 import { PaginatedProps, SharedData, Video } from "@/types";
 import videos from "@/routes/videos";
 import PaginatedCollection from "@/Components/PaginatedCollection";
+import {TrashIcon} from "lucide-react";
 
 type Props = {
     videoList: PaginatedProps<Video>
@@ -17,6 +18,12 @@ const Index = () => {
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
+
+    function handleDelete(video: Video) {
+        if (confirm("Voulez-vous vraiment retirer cette vidéo ?")) {
+            router.delete(videos.destroy({video: video}))
+        }
+    }
 
     return (
         <PageStructure title="Courts métrages">
@@ -62,6 +69,14 @@ const Index = () => {
                                             <path d="m15 5 4 4"/>
                                         </svg>
                                     </Link>
+                                )}
+                                {auth.user && video.can_delete && (
+                                    <button
+                                        className={"absolute top-3 left-3 z-10 opacity-0 group-hover:opacity-100 bg-red-600/90 p-2 rounded-full shadow-md transition-all duration-200"}
+                                        onClick={() => handleDelete(video)}
+                                    >
+                                        <TrashIcon width={16} height={16}/>
+                                    </button>
                                 )}
                                 <YoutubeVideos
                                     id={video.link.replace("https://www.youtube.com/watch?v=", "").replace("https://youtu.be/", "")}

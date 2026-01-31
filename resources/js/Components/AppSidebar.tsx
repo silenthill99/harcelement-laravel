@@ -38,6 +38,7 @@ const AppSidebar = () => {
                         <SidebarMenuButton size={"lg"} asChild>
                             <Link href={accueil()}>
                                 <ApplicationLogo/>
+                                <span>Retour à l'accueil</span>
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
