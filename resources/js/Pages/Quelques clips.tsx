@@ -4,6 +4,7 @@ import PageStructure from "@/Components/PageStructure";
 import {router, usePage} from "@inertiajs/react";
 import {Button} from "@/Components/ui/button";
 import clips from "@/routes/clips";
+import {getVideoId} from "@/Components/getVideoId";
 
 type ClipProps = {
     id: number;
@@ -13,6 +14,7 @@ type ClipProps = {
 }
 const QuelquesClips = () => {
     const {clipList, can} = usePage<{ clipList: ClipProps[], can: boolean }>().props;
+
     return (
         <PageStructure title={"Quelques clips"}
                        className={"container mx-auto my-8"}>
@@ -26,8 +28,11 @@ const QuelquesClips = () => {
             )}
             <div className={"grid grid-cols-1 lg:grid-cols-2 gap-5"}>
                 {clipList.map(clip => (
-                    <YoutubeVideos key={clip.id} id={clip.link.replace("https://www.youtube.com/watch?v=", "")}
-                                   name={clip.title} className={"mx-auto text-center"}/>
+                    <YoutubeVideos
+                        key={clip.id}
+                        id={getVideoId(clip.link)}
+                        name={clip.title} className={"mx-auto text-center"}
+                    />
                 ))}
             </div>
         </PageStructure>

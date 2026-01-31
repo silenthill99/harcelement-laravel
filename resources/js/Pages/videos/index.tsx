@@ -7,6 +7,7 @@ import { PaginatedProps, SharedData, Video } from "@/types";
 import videos from "@/routes/videos";
 import PaginatedCollection from "@/Components/PaginatedCollection";
 import {TrashIcon} from "lucide-react";
+import {getVideoId} from "@/Components/getVideoId";
 
 type Props = {
     videoList: PaginatedProps<Video>
@@ -79,7 +80,7 @@ const Index = () => {
                                     </button>
                                 )}
                                 <YoutubeVideos
-                                    id={video.link.replace("https://www.youtube.com/watch?v=", "").replace("https://youtu.be/", "")}
+                                    id={getVideoId(video.link)}
                                     name={video.title}
                                     variant="card"
                                 />

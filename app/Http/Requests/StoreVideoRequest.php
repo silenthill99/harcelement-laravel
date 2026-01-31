@@ -25,7 +25,8 @@ class StoreVideoRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'link' => 'required|url|regex:/^https:\/\/(www\.)?youtube\.com\/watch\?v=.+$/',
+            'link' => ['required','url',"regex:/https?:\/\/(?:(?:www\.)?youtube\.com\/watch\?[^#\s]*v=|youtu\.be\/)([A-Za-z0-9_-]{11})(?:[&?][^#\s]*)*/i
+"],
         ];
     }
 }
