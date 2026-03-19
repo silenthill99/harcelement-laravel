@@ -120,7 +120,7 @@ const Welcome = () => {
                 <div className="relative container mx-auto px-4 py-20 md:py-32">
                     <div className="max-w-3xl mx-auto text-center">
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in">
-                            Ensemble contre le
+                            Ensemble contre le{" "}
                             <span className="block text-yellow-300">harcèlement scolaire</span>
                         </h1>
                         <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
