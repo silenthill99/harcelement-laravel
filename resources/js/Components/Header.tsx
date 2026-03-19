@@ -182,7 +182,7 @@ const Header = () => {
                                 className={cn(
                                     "relative px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
                                     "text-gray-700 hover:text-red-600 hover:bg-red-50",
-                                    isActive(item.link().url) && "text-red-600 bg-red-50"
+                                    isActive(item.link().url) && "text-red-800 bg-red-50"
                                 )}
                             >
                                 {item.name}
@@ -196,7 +196,7 @@ const Header = () => {
                             className={cn(
                                 "relative px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
                                 "text-gray-700 hover:text-red-600 hover:bg-red-50",
-                                isActive(forum.definition.url) && "text-red-600 bg-red-50"
+                                isActive(forum.definition.url) && "text-red-800 bg-red-50"
                             )}
                         >
                             Forum
