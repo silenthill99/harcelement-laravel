@@ -2,11 +2,12 @@ type YoutubeVideoProps = {
     id: string,
     name: string,
     className?: string,
-    variant?: 'default' | 'card'
+    variant?: 'default' | 'card',
+    showTitle?: boolean,
 }
 
 export const YoutubeVideos = (props: YoutubeVideoProps) => {
-    const { id, name, className, variant = 'default' } = props;
+    const { id, name, className, variant = 'default', showTitle = true } = props;
 
     if (variant === 'card') {
         return (
@@ -32,7 +33,9 @@ export const YoutubeVideos = (props: YoutubeVideoProps) => {
 
     return (
         <div className={className}>
-            <h2 className="m-2 text-wrap md:text-nowrap">{name}</h2>
+            {showTitle && (
+                <h2 className="m-2 text-wrap md:text-nowrap">{name}</h2>
+            )}
             <iframe
                 width="560"
                 height="315"

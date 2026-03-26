@@ -75,3 +75,9 @@ export interface SharedData {
         success?: string;
     }
 }
+
+export interface Reportage {
+    id: number;
+    title: string;
+    url: string;
+}

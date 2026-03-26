@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreVideoRequest;
 use App\Http\Requests\UpdateVideoRequest;
+use App\Http\Resources\ReportageResource;
 use App\Http\Resources\VideoResource;
+use App\Models\Reportage;
 use App\Models\Video;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
@@ -14,12 +16,14 @@ class VideoController extends Controller
     public function index()
     {
         $videoList = Video::paginate(20);
+        $reportages = Reportage::all();
 
         $can_create = request()->user()?->can('create', Video::class);
 
         return Inertia::render('videos/index', [
             "videoList" => VideoResource::collection($videoList),
-            'can_create' => $can_create
+            'can_create' => $can_create,
+            "reportages" => ReportageResource::collection($reportages),
         ]);
     }
 

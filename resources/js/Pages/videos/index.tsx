@@ -3,7 +3,7 @@ import { YoutubeVideos } from "@/Components/YoutubeVideos";
 import PageStructure from "@/Components/PageStructure";
 import { Link, router, usePage } from "@inertiajs/react";
 import { Button } from "@/Components/ui/button";
-import { PaginatedProps, SharedData, Video } from "@/types";
+import {PaginatedProps, Reportage, SharedData, Video} from "@/types";
 import videos from "@/routes/videos";
 import PaginatedCollection from "@/Components/PaginatedCollection";
 import {TrashIcon} from "lucide-react";
@@ -11,10 +11,11 @@ import {getVideoId} from "@/Components/getVideoId";
 
 type Props = {
     videoList: PaginatedProps<Video>
+    reportages: Reportage[]
 }
 
 const Index = () => {
-    const { auth, videoList, can_create } = usePage<SharedData & { can_create: boolean } & Props>().props;
+    const { auth, videoList, can_create, reportages } = usePage<SharedData & { can_create: boolean } & Props>().props;
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -98,6 +99,7 @@ const Index = () => {
             {/* Reportages Section */}
             <section className="py-12 bg-linear-to-r from-red-900 to-red-400">
                 <div className="container mx-auto px-4">
+                    <Button>Ajouter un reportage</Button>
                     <div className="text-center mb-10">
                         <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
                             Quelques reportages
@@ -107,45 +109,18 @@ const Index = () => {
                         </p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-colors">
-                            <div className="aspect-video rounded-lg overflow-hidden mb-3">
-                                <iframe
-                                    className="w-full h-full"
-                                    src="https://www.youtube.com/embed/M7RTYiXeNUg"
-                                    title="Harcelés à l'école, ils sortent du silence"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerPolicy="strict-origin-when-cross-origin"
-                                    allowFullScreen
-                                />
-                            </div>
-                            <h3 className="text-white font-semibold">Harcelés à l'école, ils sortent du silence</h3>
-                        </div>
-                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-colors">
-                            <div className="aspect-video rounded-lg overflow-hidden mb-3">
-                                <iframe
-                                    className="w-full h-full"
-                                    src="https://www.youtube.com/embed/zDLUgB6wTT4"
-                                    title="Mourir à 13 ans"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerPolicy="strict-origin-when-cross-origin"
-                                    allowFullScreen
-                                />
-                            </div>
-                            <h3 className="text-white font-semibold">Mourir à 13 ans</h3>
-                        </div>
-                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-colors">
-                            <div className="aspect-video rounded-lg overflow-hidden mb-3">
-                                <iframe
-                                    className="w-full h-full"
-                                    src="https://www.youtube.com/embed/yabJCaFmDc0"
-                                    title="Ça Commence Aujourd'hui"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerPolicy="strict-origin-when-cross-origin"
-                                    allowFullScreen
-                                />
-                            </div>
-                            <h3 className="text-white font-semibold">Ça Commence Aujourd'hui</h3>
-                        </div>
+                        {reportages.length === 0 ? (
+                            <p>Aucun reportages actuellement</p>
+                        ) : (
+                            reportages.map((reportage) => (
+                                <div key={reportage.id} className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-colors">
+                                    <div className="aspect-video rounded-lg overflow-hidden mb-3">
+                                        <YoutubeVideos id={getVideoId(reportage.url)} name={reportage.title} showTitle={false} className="w-full h-full"/>
+                                    </div>
+                                    <h3 className="text-white font-semibold">{reportage.title}</h3>
+                                </div>
+                            ))
+                        )}
                     </div>
                 </div>
             </section>
