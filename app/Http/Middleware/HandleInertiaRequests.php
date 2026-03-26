@@ -36,7 +36,8 @@ class HandleInertiaRequests extends Middleware
             ],
             "flash" => [
                 "success" => $request->session()->get('success')
-            ]
+            ],
+            'is_admin' => $request->user()?->can('isAdmin') ?? false,
         ];
     }
 }

@@ -15,7 +15,7 @@ type Props = {
 }
 
 const Index = () => {
-    const { auth, videoList, can_create, reportages } = usePage<SharedData & { can_create: boolean } & Props>().props;
+    const { auth, videoList, can_create, reportages, is_admin } = usePage<SharedData & { can_create: boolean } & Props>().props;
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -99,7 +99,9 @@ const Index = () => {
             {/* Reportages Section */}
             <section className="py-12 bg-linear-to-r from-red-900 to-red-400">
                 <div className="container mx-auto px-4">
-                    <Button>Ajouter un reportage</Button>
+                    {is_admin && (
+                        <Button>Ajouter un reportage</Button>
+                    )}
                     <div className="text-center mb-10">
                         <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
                             Quelques reportages

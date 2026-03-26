@@ -74,6 +74,7 @@ export interface SharedData {
     flash?: {
         success?: string;
     }
+    is_admin: boolean;
 }
 
 export interface Reportage {
