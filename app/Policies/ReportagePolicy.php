@@ -9,27 +9,11 @@ use Illuminate\Auth\Access\Response;
 class ReportagePolicy
 {
     /**
-     * Determine whether the user can view any models.
-     */
-    public function viewAny(User $user): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can view the model.
-     */
-    public function view(User $user, Reportage $reportage): bool
-    {
-        return false;
-    }
-
-    /**
      * Determine whether the user can create models.
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user->can('isAdmin');
     }
 
     /**
@@ -37,7 +21,7 @@ class ReportagePolicy
      */
     public function update(User $user, Reportage $reportage): bool
     {
-        return false;
+        return $user->can('isAdmin');
     }
 
     /**
@@ -45,7 +29,7 @@ class ReportagePolicy
      */
     public function delete(User $user, Reportage $reportage): bool
     {
-        return false;
+        return $user->can('isAdmin');
     }
 
     /**
@@ -53,7 +37,7 @@ class ReportagePolicy
      */
     public function restore(User $user, Reportage $reportage): bool
     {
-        return false;
+        return $user->can('isAdmin');
     }
 
     /**
@@ -61,6 +45,6 @@ class ReportagePolicy
      */
     public function forceDelete(User $user, Reportage $reportage): bool
     {
-        return false;
+        return $user->can('isAdmin');
     }
 }

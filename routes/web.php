@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClipController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportageController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -45,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('videos', VideoController::class)->except('show', 'index');
+    Route::resource('reportage', ReportageController::class)->except('show', 'index');
 });
 
 Route::resource('videos', VideoController::class)->only('index');

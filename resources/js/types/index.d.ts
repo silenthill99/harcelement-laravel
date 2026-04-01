@@ -81,4 +81,6 @@ export interface Reportage {
     id: number;
     title: string;
     url: string;
+    can_create: boolean;
+    can_update: boolean;
 }

@@ -6,8 +6,11 @@ import { Button } from "@/Components/ui/button";
 import {PaginatedProps, Reportage, SharedData, Video} from "@/types";
 import videos from "@/routes/videos";
 import PaginatedCollection from "@/Components/PaginatedCollection";
-import {TrashIcon} from "lucide-react";
+import {Plus, TrashIcon} from "lucide-react";
 import {getVideoId} from "@/Components/getVideoId";
+import axios from "axios";
+import ReportageController from "@/actions/App/Http/Controllers/ReportageController";
+import reportage from "@/routes/reportage";
 
 type Props = {
     videoList: PaginatedProps<Video>
@@ -15,7 +18,7 @@ type Props = {
 }
 
 const Index = () => {
-    const { auth, videoList, can_create, reportages, is_admin } = usePage<SharedData & { can_create: boolean } & Props>().props;
+    const { auth, videoList, can_create, reportages} = usePage<SharedData & { can_create: boolean } & Props>().props;
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -24,6 +27,16 @@ const Index = () => {
     function handleDelete(video: Video) {
         if (confirm("Voulez-vous vraiment retirer cette vidéo ?")) {
             router.delete(videos.destroy({video: video}))
+        }
+    }
+
+    async function ajaxDelete(reportage: Reportage){
+        if (!confirm("Voulez-vous vraiment supprimer ce reportage ?")) return;
+        try {
+            await axios.delete(ReportageController.destroy({reportage: reportage}).url)
+            router.reload({ only: ['reportages'] })
+        } catch (e) {
+            console.error(e)
         }
     }
 
@@ -98,9 +111,11 @@ const Index = () => {
 
             {/* Reportages Section */}
             <section className="py-12 bg-linear-to-r from-red-900 to-red-400">
-                <div className="container mx-auto px-4">
-                    {is_admin && (
-                        <Button>Ajouter un reportage</Button>
+                <div className="container mx-auto px-4 relative">
+                    {can_create && (
+                        <Link href={reportage.create()} className={'absolute top-5 left-5 bg-white/20 hover:bg-white/30 w-10 h-10 flex items-center justify-center rounded-full transition-colors duration-200'}>
+                            <Plus className={"text-white size-5"}/>
+                        </Link>
                     )}
                     <div className="text-center mb-10">
                         <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
@@ -112,10 +127,15 @@ const Index = () => {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {reportages.length === 0 ? (
-                            <p>Aucun reportages actuellement</p>
+                            <p className={"text-white"}>Aucun reportages actuellement</p>
                         ) : (
                             reportages.map((reportage) => (
-                                <div key={reportage.id} className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-colors">
+                                <div key={reportage.id} className="relative bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-colors group">
+                                    {reportage.can_update && (
+                                        <button className={"absolute top-5 right-5 bg-red-500 w-8 h-8 hidden group-hover:flex items-center justify-center rounded-full"} onClick={() => ajaxDelete(reportage)}>
+                                            <TrashIcon width={16} height={16}/>
+                                        </button>
+                                    )}
                                     <div className="aspect-video rounded-lg overflow-hidden mb-3">
                                         <YoutubeVideos id={getVideoId(reportage.url)} name={reportage.title} showTitle={false} className="w-full h-full"/>
                                     </div>

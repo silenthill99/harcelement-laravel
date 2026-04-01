@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreReportageRequest;
 use App\Http\Requests\UpdateReportageRequest;
 use App\Models\Reportage;
+use Illuminate\Support\Facades\Gate;
+use Inertia\Inertia;
 
 class ReportageController extends Controller
 {
@@ -21,7 +23,8 @@ class ReportageController extends Controller
      */
     public function create()
     {
-        //
+        Gate::authorize('create', Reportage::class);
+        return Inertia::render("videos/reportage/create");
     }
 
     /**
@@ -29,7 +32,10 @@ class ReportageController extends Controller
      */
     public function store(StoreReportageRequest $request)
     {
-        //
+        $data = $request->validated();
+        Reportage::create($data);
+
+        return redirect()->route('videos.index');
     }
 
     /**
@@ -61,6 +67,9 @@ class ReportageController extends Controller
      */
     public function destroy(Reportage $reportage)
     {
-        //
+        Gate::authorize('delete', $reportage);
+        $reportage->delete();
+
+        return response()->json();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Reportage;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,6 +19,8 @@ class ReportageResource extends JsonResource
             "id" => $this->id,
             "title" => $this->title,
             "url" => $this->url,
+            'can_create' => $request->user()?->can('create', Reportage::class),
+            'can_update' => $request->user()?->can('update', $this->resource),
         ];
     }
 }
