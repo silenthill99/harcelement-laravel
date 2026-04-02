@@ -83,4 +83,5 @@ export interface Reportage {
     url: string;
     can_create: boolean;
     can_update: boolean;
+    can_delete: boolean;
 }

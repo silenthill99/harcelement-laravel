@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreReportageRequest;
 use App\Http\Requests\UpdateReportageRequest;
+use App\Http\Resources\ReportageResource;
 use App\Models\Reportage;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
@@ -51,7 +52,9 @@ class ReportageController extends Controller
      */
     public function edit(Reportage $reportage)
     {
-        //
+        return Inertia::render("videos/reportage/edit", [
+            'reportage' => new ReportageResource($reportage)
+        ]);
     }
 
     /**
@@ -59,7 +62,10 @@ class ReportageController extends Controller
      */
     public function update(UpdateReportageRequest $request, Reportage $reportage)
     {
-        //
+        $data = $request->validated();
+        $reportage->update($data);
+
+        return redirect()->route('videos.index');
     }
 
     /**

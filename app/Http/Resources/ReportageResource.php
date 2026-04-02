@@ -21,6 +21,7 @@ class ReportageResource extends JsonResource
             "url" => $this->url,
             'can_create' => $request->user()?->can('create', Reportage::class),
             'can_update' => $request->user()?->can('update', $this->resource),
+            'can_delete' => $request->user()?->can('delete', $this->resource),
         ];
     }
 }

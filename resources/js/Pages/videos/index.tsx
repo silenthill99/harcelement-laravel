@@ -6,7 +6,7 @@ import { Button } from "@/Components/ui/button";
 import {PaginatedProps, Reportage, SharedData, Video} from "@/types";
 import videos from "@/routes/videos";
 import PaginatedCollection from "@/Components/PaginatedCollection";
-import {Plus, TrashIcon} from "lucide-react";
+import {PencilIcon, Plus, TrashIcon} from "lucide-react";
 import {getVideoId} from "@/Components/getVideoId";
 import axios from "axios";
 import ReportageController from "@/actions/App/Http/Controllers/ReportageController";
@@ -132,6 +132,13 @@ const Index = () => {
                             reportages.map((reportage) => (
                                 <div key={reportage.id} className="relative bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-colors group">
                                     {reportage.can_update && (
+                                        <Button variant={"secondary"} className={"absolute top-5 left-5 size-8 rounded-full hidden group-hover:flex"}
+                                                onClick={() => router.visit(ReportageController.edit(reportage))}
+                                        >
+                                            <PencilIcon/>
+                                        </Button>
+                                    )}
+                                    {reportage.can_delete && (
                                         <button className={"absolute top-5 right-5 bg-red-500 w-8 h-8 hidden group-hover:flex items-center justify-center rounded-full"} onClick={() => ajaxDelete(reportage)}>
                                             <TrashIcon width={16} height={16}/>
                                         </button>
