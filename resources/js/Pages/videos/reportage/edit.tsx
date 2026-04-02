@@ -46,9 +46,9 @@ const Edit = () => {
                             <InputError message={errors.url} />
                         </div>
                         <div className={"flex justify-between"}>
-                            <Button>Modifier</Button>
+                            <Button disabled={processing}>Modifier {processing && <LoaderCircleIcon className={"animate-spin"}/> }</Button>
                             <Button type={"button"} variant={"link"} onClick={cancel} disabled={processing}>
-                                Annuler {processing && <LoaderCircleIcon className={"animate-spin"}/> }
+                                Annuler
                             </Button>
                         </div>
                     </div>
