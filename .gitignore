@@ -25,3 +25,7 @@ yarn-error.log
 /resources/js/routes
 /resources/js/wayfinder
 nul
+.claude
+CLAUDE.md
+boost.json
+.mcp.json
